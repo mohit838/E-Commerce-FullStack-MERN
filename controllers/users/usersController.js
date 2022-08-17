@@ -1,5 +1,6 @@
 const { validationResult } = require("express-validator");
 const UserModel = require("./../../models/User");
+const { hashedPassword } = require("./../../services/authService");
 
 // POST api/auth/register
 // Public router
@@ -12,7 +13,17 @@ module.exports.register = async (req, res) => {
 
     const isEmail = await UserModel.findOne({ email });
 
-    if (isEmail) {
+    if (!isEmail) {
+      const encPassword = await hashedPassword(password);
+
+      const newUser = await UserModel.create({
+        name,
+        email,
+        password,
+        admin: true,
+      });
+
+      return res.status(201).json({ msg: "You account has been created." });
     } else {
       return res
         .status(401)

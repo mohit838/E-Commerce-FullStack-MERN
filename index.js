@@ -5,6 +5,9 @@ const userRouters = require("./routes/user/userRoutes");
 
 app = express();
 
+// Add middlewire
+app.use(express.json());
+
 // DB Connection
 dbConnect();
 

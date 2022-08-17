@@ -1,13 +1,29 @@
 const { validationResult } = require("express-validator");
+const UserModel = require("./../../models/User");
 
 // POST api/auth/register
 // Public router
 // Create user and return a token
-module.exports.register = (req, res) => {
+module.exports.register = async (req, res) => {
   const errors = validationResult(req);
 
   if (errors.isEmpty()) {
-    console.log(req.body);
+    const { name, email, password } = req.body;
+
+    const isEmail = await UserModel.findOne({ email });
+
+    if (isEmail) {
+    } else {
+      return res
+        .status(401)
+        .json({ error: [{ msg: `${email} is already taken!` }] });
+    }
+
+    try {
+    } catch (error) {
+      console.log(error.message);
+      return res.status(500).json("Server Inernal error!");
+    }
   } else {
     // If failed the validation
     return res.status(400).json({ errors: errors.array() });

@@ -1,3 +1,4 @@
+const jwt = require("jsonwebtoken");
 const { validationResult } = require("express-validator");
 const { UserModel } = require("./../../models/User");
 const { hashedPassword } = require("./../../services/authService");

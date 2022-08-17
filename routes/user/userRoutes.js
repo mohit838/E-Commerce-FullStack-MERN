@@ -14,6 +14,7 @@ const registerValidations = [
   body("email")
     .isEmail()
     .trim()
+    .escape()
     .normalizeEmail()
     .withMessage("Email Is Required!!"),
 

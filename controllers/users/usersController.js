@@ -1,5 +1,5 @@
 const { validationResult } = require("express-validator");
-const UserModel = require("./../../models/User");
+const { UserModel } = require("./../../models/User");
 const { hashedPassword } = require("./../../services/authService");
 
 // POST api/auth/register
@@ -19,8 +19,7 @@ module.exports.register = async (req, res) => {
       const newUser = await UserModel.create({
         name,
         email,
-        password,
-        admin: true,
+        password: encPassword,
       });
 
       return res.status(201).json({ msg: "You account has been created." });

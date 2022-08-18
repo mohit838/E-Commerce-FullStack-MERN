@@ -1,5 +1,6 @@
 const { body } = require("express-validator");
 
+// @For Registration only
 module.exports.registerValidations = [
   body("name")
     .not()
@@ -17,6 +18,17 @@ module.exports.registerValidations = [
 
   body("password")
     .isLength({ min: 8 })
-    .trim()
     .withMessage("Password Should be 8 Character long!"),
+];
+
+// @For Login only
+module.exports.loginValidations = [
+  body("email")
+    .isEmail()
+    .trim()
+    .escape()
+    .normalizeEmail()
+    .withMessage("Email Is Required!!"),
+
+  body("password").not().isEmpty().withMessage("Password Is Required!!"),
 ];

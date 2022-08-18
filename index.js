@@ -2,6 +2,7 @@ const express = require("express");
 const env = require("./config/envConfig");
 const dbConnect = require("./config/db");
 const userRouters = require("./routes/user/userRoutes");
+const userLogin = require("./routes/user/userRoutes");
 
 app = express();
 
@@ -13,6 +14,7 @@ dbConnect();
 
 // User Router
 app.use("/api/auth", userRouters);
+app.use("/api/auth", userLogin);
 
 // Test route
 app.get("/", (req, res) => {

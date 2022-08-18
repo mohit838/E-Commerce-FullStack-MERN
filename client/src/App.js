@@ -1,8 +1,10 @@
+import Routing from "./routes/Routing";
+
 function App() {
   return (
-    <div>
-      <h1>Hello</h1>
-    </div>
+    <>
+      <Routing></Routing>
+    </>
   );
 }
 

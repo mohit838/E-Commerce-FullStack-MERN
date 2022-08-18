@@ -6,7 +6,7 @@ const Routing = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/">
+        <Route path="auth">
           <Route path="admin-login" element={<AdminLogin />} />
         </Route>
       </Routes>

@@ -13,8 +13,8 @@ app.use(express.json());
 dbConnect();
 
 // User Router
-app.use("/api/auth", userRouters);
-app.use("/api/auth", userLogin);
+app.use("/api", userRouters);
+app.use("/api", userLogin);
 
 // Test route
 app.get("/", (req, res) => {

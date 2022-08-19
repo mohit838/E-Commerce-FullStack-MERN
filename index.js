@@ -22,7 +22,7 @@ app.get("/", (req, res) => {
 });
 
 // PORT selection
-const port = env.PORT || 8081;
+const port = env.PORT || 8080;
 
 // Check PORT
 app.listen(port, () => {

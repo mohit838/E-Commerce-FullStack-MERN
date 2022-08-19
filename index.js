@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const env = require("./config/envConfig");
 const dbConnect = require("./config/db");
-const userRouters = require("./routes/user/userRoutes");
+const userRouters = require("./routes/userRoutes");
 
 // Add middlewire
 app = express();

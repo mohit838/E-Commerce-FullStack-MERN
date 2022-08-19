@@ -1,10 +1,10 @@
 const { validationResult } = require("express-validator");
-const { UserModel } = require("./../../models/User");
+const { UserModel } = require("../models/User");
 const {
   hashedPassword,
   matchingPassword,
   jwtTokenCreate,
-} = require("./../../services/authService");
+} = require("../services/authService");
 
 // @POST api/auth/register
 // @Public router

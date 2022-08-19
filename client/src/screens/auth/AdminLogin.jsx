@@ -1,27 +1,44 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuthLoginMutation } from "../../store/services/authService";
+import { useDispatch } from "react-redux";
+import { setAdminToken } from "../../store/reducers/authReducer";
+import { useNavigate } from "react-router-dom";
 
 const AdminLogin = () => {
+  const navigate = useNavigate();
+
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
   });
 
-  const handleOnChangeLogin = (e) => {
-    setLoginData({ ...loginData, [e.target.name]: e.target.value });
-  };
-
   const [logIn, response] = useAuthLoginMutation();
-  console.log("My response -> ", response);
+  // console.log("My response -> ", response);
 
   const errors = response?.error?.data?.errors
     ? response?.error?.data?.errors
     : [];
 
+  const handleOnChangeLogin = (e) => {
+    setLoginData({ ...loginData, [e.target.name]: e.target.value });
+  };
+
   const handleLoginSubmit = (e) => {
     e.preventDefault();
     logIn(loginData);
   };
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (response.isSuccess) {
+      localStorage.setItem("admin-token", response?.data?.token);
+
+      dispatch(setAdminToken(response?.data?.token));
+
+      navigate("/dashboard/produucts");
+    }
+  }, [response.isSuccess]);
 
   return (
     <div className="bg-white h-screen flex justify-center items-center">
@@ -67,7 +84,7 @@ const AdminLogin = () => {
           <input
             type="submit"
             className="w-full p-4 text-white bg-black rounded outline-none uppercase font-semibold cursor-pointer"
-            value={response.isLoading ? "Loading..." : "sign In"}
+            value={response.isLoading ? "Loading..." : "Sign In"}
           />
         </div>
       </form>

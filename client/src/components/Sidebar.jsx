@@ -1,9 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Sidebar = () => {
+const Sidebar = ({ side, closeSideBar }) => {
   return (
-    <div className="fixed top-0 left-0 w-64 h-screen bg-orange-500">
+    <div
+      className={`fixed top-0 ${side} sm:left-0 w-64 h-screen bg-orange-500 z-10 transition-all`}
+    >
+      {/* Close Sidebar */}
+      <i
+        class="bi bi-x-lg absolute top-4 right-3 text-2xl text-black sm:hidden block cursor-pointer"
+        onClick={closeSideBar}
+      ></i>
+
       {/* Logo */}
       <div className=" text-white font-bold text-6xl text-center p-5 mb-4">
         gRio.

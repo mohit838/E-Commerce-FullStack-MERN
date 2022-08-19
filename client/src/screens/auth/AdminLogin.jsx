@@ -36,7 +36,7 @@ const AdminLogin = () => {
 
       dispatch(setAdminToken(response?.data?.token));
 
-      navigate("/dashboard/produucts");
+      navigate("/dashboard/products");
     }
   }, [response.isSuccess]);
 

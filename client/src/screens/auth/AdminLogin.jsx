@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useAuthLoginMutation } from "../../store/services/authServices";
+import { useAuthLoginMutation } from "../../store/services/authService";
 
 const AdminLogin = () => {
   const [loginData, setLoginData] = useState({
@@ -7,16 +7,16 @@ const AdminLogin = () => {
     password: "",
   });
 
+  const handleOnChangeLogin = (e) => {
+    setLoginData({ ...loginData, [e.target.name]: e.target.value });
+  };
+
   const [logIn, response] = useAuthLoginMutation();
   console.log("My response -> ", response);
 
   const errors = response?.error?.data?.errors
     ? response?.error?.data?.errors
     : [];
-
-  const handleOnChangeLogin = (e) => {
-    setLoginData({ ...loginData, [e.target.name]: e.target.value });
-  };
 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
@@ -67,7 +67,7 @@ const AdminLogin = () => {
           <input
             type="submit"
             className="w-full p-4 text-white bg-black rounded outline-none uppercase font-semibold cursor-pointer"
-            value="Sign In &rarr;"
+            value={response.isLoading ? "Loading..." : "sign In"}
           />
         </div>
       </form>

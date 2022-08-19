@@ -37,7 +37,7 @@ module.exports.register = async (req, res) => {
       } else {
         return res
           .status(401)
-          .json({ error: [{ msg: `${email} is already taken!` }] });
+          .json({ errors: [{ msg: `${email} is already taken!` }] });
       }
     } catch (error) {
       console.log(error.message);
@@ -53,8 +53,8 @@ module.exports.register = async (req, res) => {
 // @Public router
 // @Login user and return a token
 module.exports.login = async (req, res) => {
-  const { email, password } = req.body;
   const errors = validationResult(req);
+  const { email, password } = req.body;
 
   if (errors.isEmpty()) {
     const user = await UserModel.findOne({ email });
@@ -73,12 +73,12 @@ module.exports.login = async (req, res) => {
         } else {
           return res
             .status(401)
-            .json({ error: [{ msg: "Password not matched!" }] });
+            .json({ errors: [{ msg: "Password not matched!" }] });
         }
       } else {
         return res
           .status(401)
-          .json({ error: [{ msg: `${email} is not found!` }] });
+          .json({ errors: [{ msg: `${email} is not found!` }] });
       }
     } catch (error) {
       console.log(error.message);

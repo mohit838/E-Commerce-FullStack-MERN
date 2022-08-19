@@ -4,9 +4,8 @@ const env = require("./config/envConfig");
 const dbConnect = require("./config/db");
 const userRouters = require("./routes/user/userRoutes");
 
-app = express();
-
 // Add middlewire
+app = express();
 app.use(express.json());
 app.use(cors());
 

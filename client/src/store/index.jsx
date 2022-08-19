@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import authServices from "./services/authServices";
+import authService from "./services/authService";
 
-export const store = configureStore({
+export const Store = configureStore({
   reducer: {
-    [authServices.reducerPath]: authServices.reducer,
+    [authService.reducerPath]: authService.reducer,
   },
 });
 
-export default store;
+export default Store;

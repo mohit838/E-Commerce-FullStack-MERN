@@ -17,6 +17,6 @@ module.exports.matchingPassword = async (password, dbPassword) => {
 // @For JWT token generation
 module.exports.jwtTokenCreate = (user) => {
   return jwt.sign(user, JWT_CODE, {
-    expiresIn: "3d",
+    expiresIn: "3hr",
   });
 };

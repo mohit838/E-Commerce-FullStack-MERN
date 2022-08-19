@@ -1,10 +1,12 @@
 const express = require("express");
-const { registerValidations } = require("./../../validations/userValidation");
+const {
+  registerValidations,
+  loginValidations,
+} = require("./../../validations/userValidation");
 const {
   register,
   login,
 } = require("./../../controllers/users/usersController");
-const { loginValidations } = require("./../../validations/userValidation");
 
 const router = express.Router();
 

@@ -10,6 +10,10 @@ const AdminLogin = () => {
   const [logIn, response] = useAuthLoginMutation();
   console.log("My response -> ", response);
 
+  const errors = response?.error?.data?.errors
+    ? response?.error?.data?.errors
+    : [];
+
   const handleOnChangeLogin = (e) => {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
   };
@@ -28,7 +32,18 @@ const AdminLogin = () => {
         <h3 className="mb-4 text-white capitalize font-semibold text-2xl">
           Dashboard Login
         </h3>
-        <div className="mb-4">
+
+        {/* Show Errors */}
+        {errors.length > 0 &&
+          errors.map((error, key) => (
+            <div key={key}>
+              <p className="bg-black text-white p-2 mb-3 rounded-sm text-sm font-medium">
+                {error.msg}
+              </p>
+            </div>
+          ))}
+
+        <div className="mb-4 mt-4">
           <input
             type="email"
             name="email"

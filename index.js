@@ -3,7 +3,6 @@ const cors = require("cors");
 const env = require("./config/envConfig");
 const dbConnect = require("./config/db");
 const userRouters = require("./routes/user/userRoutes");
-const userLogin = require("./routes/user/userRoutes");
 
 app = express();
 
@@ -16,7 +15,6 @@ dbConnect();
 
 // User Router
 app.use("/api", userRouters);
-app.use("/api", userLogin);
 
 // Test route
 app.get("/", (req, res) => {

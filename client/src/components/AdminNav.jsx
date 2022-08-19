@@ -1,7 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { logout } from "../store/reducers/authReducer";
+import { useDispatch } from "react-redux";
 
 const AdminNav = ({ openSideBar }) => {
+  const dispatch = useDispatch();
+
+  const adminLogout = () => {
+    dispatch(logout());
+  };
+
   return (
     <nav className="fixed left-0 sm:left-64 right-0">
       <div className="bg-orange-600 w-full p-4 flex justify-between sm:justify-end items-center">
@@ -9,12 +16,13 @@ const AdminNav = ({ openSideBar }) => {
           class="bi bi-list text-white text-2xl cursor-pointer sm:hidden block"
           onClick={openSideBar}
         ></i>
-        <Link
+        <button
           to="/"
           className="py-4 px-4 bg-black text-white rounded-lg capitalize"
+          onClick={adminLogout}
         >
           Logout
-        </Link>
+        </button>
       </div>
     </nav>
   );

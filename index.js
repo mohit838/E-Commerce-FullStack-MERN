@@ -24,7 +24,7 @@ app.get("/", (req, res) => {
 });
 
 // PORT selection
-const port = env.PORT || 8080;
+const port = env.PORT || 5000;
 
 // Check PORT
 app.listen(port, () => {

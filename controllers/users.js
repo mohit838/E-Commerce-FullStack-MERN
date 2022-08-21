@@ -40,7 +40,6 @@ module.exports.register = async (req, res) => {
           .json({ errors: [{ msg: `${email} is already taken!` }] });
       }
     } catch (error) {
-      console.log(error.message);
       return res.status(500).json("Server Inernal error!");
     }
   } else {

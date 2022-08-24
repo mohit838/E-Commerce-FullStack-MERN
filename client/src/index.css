@@ -7,7 +7,7 @@
   }
 
   .btn-submit {
-    @apply bg-black px-4 py-2 rounded-lg capitalize font-medium;
+    @apply bg-black px-4 py-2 rounded-lg capitalize font-medium cursor-pointer;
   }
 
   .form-control {

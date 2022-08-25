@@ -13,7 +13,7 @@ class Category {
         await CategoryModel.create({ name });
         return res
           .status(201)
-          .json({ message: "Your category has created successfully!" });
+          .json({ message: "Your category has been created successfully!" });
       } else {
         return res
           .status(400)

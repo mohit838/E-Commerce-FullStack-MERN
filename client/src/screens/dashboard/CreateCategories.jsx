@@ -5,13 +5,12 @@ import ScreenHeader from "../../components/ScreenHeader";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useCreateCatMutation } from "../../store/services/createCategory";
+import { setSuccess } from "../../store/reducers/globalReducerCat";
 
 const CreateCategories = () => {
   const [state, setState] = useState("");
 
   const [saveCat, response] = useCreateCatMutation();
-
-  console.log(response);
 
   const errors = response?.error?.data?.errors
     ? response?.error?.data?.errors
@@ -28,9 +27,7 @@ const CreateCategories = () => {
 
   useEffect(() => {
     if (response.isSuccess) {
-      // localStorage.setItem("admin-token", response?.data?.token);
-
-      // dispatch(setAdminToken(response?.data?.token));
+      dispatch(setSuccess(response?.data?.message));
 
       navigate("/dashboard/categories");
     }

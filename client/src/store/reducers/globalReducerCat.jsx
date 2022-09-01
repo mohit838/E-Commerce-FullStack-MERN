@@ -10,11 +10,11 @@ const globalReducerCat = createSlice({
       state.success = action.payload;
     },
 
-    clearMsg: (state) => {
+    clearMessage: (state) => {
       state.success = "";
     },
   },
 });
 
-export const { setSuccess, clearMsg } = globalReducerCat.actions;
+export const { setSuccess, clearMessage } = globalReducerCat.actions;
 export default globalReducerCat.reducer;

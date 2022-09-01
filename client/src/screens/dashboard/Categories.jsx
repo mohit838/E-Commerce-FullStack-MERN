@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ScreenHeader from "../../components/ScreenHeader";
-import { clearMsg } from "../../store/reducers/globalReducerCat";
+import { clearMessage } from "../../store/reducers/globalReducerCat";
 import Wrapper from "./Wrapper";
 
 const Categories = () => {
@@ -12,7 +12,7 @@ const Categories = () => {
 
   useEffect(() => {
     return () => {
-      dispatch(clearMsg());
+      dispatch(clearMessage());
     };
   }, []);
 

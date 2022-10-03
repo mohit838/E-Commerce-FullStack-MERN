@@ -4,6 +4,10 @@ const createCategory = createApi({
   reducerPath: "category",
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:5000/api/",
+    prepareHeaders: (headers, { getState }) => {
+      const clientToken = getState();
+      const cToken = clientToken?.authReducer?.adminToken;
+    },
   }),
   endpoints: (builder) => {
     return {

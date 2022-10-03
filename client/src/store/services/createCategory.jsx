@@ -7,6 +7,8 @@ const createCategory = createApi({
     prepareHeaders: (headers, { getState }) => {
       const clientToken = getState();
       const cToken = clientToken?.authReducer?.adminToken;
+      headers.set("authorization", cToken ? `Bearer ${cToken}` : "");
+      return headers;
     },
   }),
   endpoints: (builder) => {

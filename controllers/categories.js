@@ -29,6 +29,8 @@ class Category {
     const perPage = 3;
     const skip = page - 1 * perPage;
     try {
+      const count = await CategoryModel.find({}).countDocuments();
+      const response = await CategoryModel.find({}).skip(skip).limit(perPage);
     } catch (error) {
       console.log(error.message);
     }

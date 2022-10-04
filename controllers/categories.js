@@ -34,7 +34,8 @@ class Category {
         .skip(skip)
         .limit(perPage)
         .sort({ updateAt: -1 });
-      console.log(response);
+      // console.log(response);
+      return res.status(200).json({ categories: response, perPage, count });
     } catch (error) {
       console.log(error.message);
     }

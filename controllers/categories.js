@@ -24,7 +24,15 @@ class Category {
     }
   }
 
-  async fetchCategories(req, res) {}
+  async fetchCategories(req, res) {
+    const page = req.params.page;
+    const perPage = 3;
+    const skip = page - 1 * perPage;
+    try {
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
 }
 
 module.exports = new Category();

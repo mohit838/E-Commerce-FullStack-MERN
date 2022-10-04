@@ -1,4 +1,6 @@
 const jwt = require("jsonwebtoken");
+const { JWT_SEC } = require("./../config/envConfig");
+
 class Authorization {
   authorized(req, res, next) {
     const headerToken = req.headers.authorization;

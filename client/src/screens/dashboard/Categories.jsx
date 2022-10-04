@@ -25,6 +25,12 @@ const Categories = () => {
           </Link>
         </ScreenHeader>
         {success && <div className="">{success}</div>}
+        <div>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis,
+          provident neque impedit asperiores magni animi totam quidem ea
+          facilis? Dicta sequi hic quia? Quae quibusdam accusantium ad earum
+          rerum nostrum.
+        </div>
       </Wrapper>
     </>
   );

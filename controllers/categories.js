@@ -23,6 +23,8 @@ class Category {
       return res.status(400).json({ errors: errors.array() });
     }
   }
+
+  async fetchCategories(req, res) {}
 }
 
 module.exports = new Category();

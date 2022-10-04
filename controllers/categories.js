@@ -27,13 +27,14 @@ class Category {
   async fetchCategories(req, res) {
     const page = req.params.page;
     const perPage = 3;
-    const skip = page - 1 * perPage;
+    const skip = (page - 1) * perPage;
     try {
       const count = await CategoryModel.find({}).countDocuments();
       const response = await CategoryModel.find({})
         .skip(skip)
         .limit(perPage)
         .sort({ updateAt: -1 });
+      console.log(response);
     } catch (error) {
       console.log(error.message);
     }

@@ -4,7 +4,7 @@ import Wrapper from "./Wrapper";
 import ScreenHeader from "../../components/ScreenHeader";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useCreateCatMutation } from "../../store/services/createCategory";
+import { useCreateCatMutation } from "../../store/services/categoryServices";
 import { setSuccess } from "../../store/reducers/globalReducerCat";
 
 const CreateCategories = () => {

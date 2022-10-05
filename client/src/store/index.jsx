@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "./reducers/authReducer";
 import globalReducerCat from "./reducers/globalReducerCat";
 import authService from "./services/authService";
-import createCategory from "./services/createCategory";
+import createCategory from "./services/categoryServices";
 
 export const Store = configureStore({
   reducer: {

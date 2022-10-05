@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import ScreenHeader from "../../components/ScreenHeader";
 import { clearMessage } from "../../store/reducers/globalReducerCat";
 import Wrapper from "./Wrapper";
 
 const Categories = () => {
+  const { page } = useParams();
+
   const { success } = useSelector((state) => state.globalReducerCat);
 
   const dispatch = useDispatch();

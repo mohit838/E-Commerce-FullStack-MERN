@@ -22,9 +22,14 @@ const createCategory = createApi({
           };
         },
       }),
+      get: builder.query({
+        query: (page) => {
+          return { url: `categories/${page}`, method: "GET" };
+        },
+      }),
     };
   },
 });
-export const { useCreateCatMutation } = createCategory;
+export const { useCreateCatMutation, useGetQuery } = createCategory;
 
 export default createCategory;

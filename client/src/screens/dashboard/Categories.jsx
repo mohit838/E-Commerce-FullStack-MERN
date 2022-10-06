@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import ScreenHeader from "../../components/ScreenHeader";
 import { clearMessage } from "../../store/reducers/globalReducerCat";
+import { useGetQuery } from "../../store/services/categoryServices";
 import Wrapper from "./Wrapper";
 
 const Categories = () => {
@@ -11,6 +12,10 @@ const Categories = () => {
   const { success } = useSelector((state) => state.globalReducerCat);
 
   const dispatch = useDispatch();
+
+  const { data = [], isLoading } = useGetQuery(page ? page : 1);
+
+  console.log(data, isLoading);
 
   useEffect(() => {
     return () => {

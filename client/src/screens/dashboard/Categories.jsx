@@ -16,8 +16,6 @@ const Categories = () => {
 
   const { data = [], isLoading } = useGetQuery(page ? page : 1);
 
-  console.log(data, isLoading);
-
   useEffect(() => {
     return () => {
       dispatch(clearMessage());

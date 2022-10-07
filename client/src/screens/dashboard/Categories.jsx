@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
+import Pagination from "../../components/Pagination";
 import ScreenHeader from "../../components/ScreenHeader";
 import Spinner from "../../components/Spinner";
 import { clearMessage } from "../../store/reducers/globalReducer";
@@ -66,6 +67,12 @@ const Categories = () => {
                   </tbody>
                 </table>
               </div>
+              <Pagination
+                page={parseInt(page)}
+                count={data.count}
+                perPage={data.perPage}
+                path="dashboard/categories"
+              />
             </>
           )
         ) : (

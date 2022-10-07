@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import ScreenHeader from "../../components/ScreenHeader";
+import Spinner from "../../components/Spinner";
 import { clearMessage } from "../../store/reducers/globalReducerCat";
 import { useGetQuery } from "../../store/services/categoryServices";
 import Wrapper from "./Wrapper";
@@ -31,13 +32,47 @@ const Categories = () => {
             Add Categories <i className="bi bi-plus-lg"></i>
           </Link>
         </ScreenHeader>
-        {success && <div className="">{success}</div>}
-        <div>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis,
-          provident neque impedit asperiores magni animi totam quidem ea
-          facilis? Dicta sequi hic quia? Quae quibusdam accusantium ad earum
-          rerum nostrum.
-        </div>
+        {success && <div className="alert-success">{success}</div>}
+        {!isLoading ? (
+          data?.categories?.length > 0 && (
+            <>
+              <div>
+                <table className="w-full bg-gray-900 rounded-md">
+                  <thead>
+                    <tr className="border-b border-gray-800 text-left">
+                      <th className="p-3 uppercase text-sm font-medium text-gray-500">
+                        name
+                      </th>
+                      <th className="p-3 uppercase text-sm font-medium text-gray-500">
+                        edit
+                      </th>
+                      <th className="p-3 uppercase text-sm font-medium text-gray-500">
+                        delete
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {data?.categories?.map((category) => (
+                      <tr key={category._id} className="odd:bg-gray-800">
+                        <td className="p-3 capitalize text-sm font-normal text-gray-400">
+                          {category.name}
+                        </td>
+                        <td className="p-3 capitalize text-sm font-normal text-gray-400">
+                          edit
+                        </td>
+                        <td className="p-3 capitalize text-sm font-normal text-gray-400">
+                          <button className="btn btn-danger">delete</button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </>
+          )
+        ) : (
+          <Spinner />
+        )}
       </Wrapper>
     </>
   );

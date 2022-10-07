@@ -3,14 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import ScreenHeader from "../../components/ScreenHeader";
 import Spinner from "../../components/Spinner";
-import { clearMessage } from "../../store/reducers/globalReducerCat";
+import { clearMessage } from "../../store/reducers/globalReducer";
 import { useGetQuery } from "../../store/services/categoryServices";
 import Wrapper from "./Wrapper";
 
 const Categories = () => {
   const { page } = useParams();
 
-  const { success } = useSelector((state) => state.globalReducerCat);
+  const { success } = useSelector((state) => state.globalReducer);
 
   const dispatch = useDispatch();
 

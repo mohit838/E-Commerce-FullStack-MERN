@@ -5,7 +5,7 @@ import ScreenHeader from "../../components/ScreenHeader";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useCreateCatMutation } from "../../store/services/categoryServices";
-import { setSuccess } from "../../store/reducers/globalReducerCat";
+import { setSuccess } from "../../store/reducers/globalReducer";
 
 const CreateCategories = () => {
   const [state, setState] = useState("");

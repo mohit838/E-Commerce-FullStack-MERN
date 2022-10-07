@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const globalReducerCat = createSlice({
-  name: "globalReducerCat",
+const globalReducer = createSlice({
+  name: "globalReducer",
   initialState: {
     success: "",
   },
@@ -16,5 +16,5 @@ const globalReducerCat = createSlice({
   },
 });
 
-export const { setSuccess, clearMessage } = globalReducerCat.actions;
-export default globalReducerCat.reducer;
+export const { setSuccess, clearMessage } = globalReducer.actions;
+export default globalReducer.reducer;

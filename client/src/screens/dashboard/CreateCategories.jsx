@@ -50,9 +50,7 @@ const CreateCategories = () => {
           {errors.length > 0 &&
             errors.map((error, key) => (
               <div key={key}>
-                <p className="text-black p-2 mb-3 text-sm font-medium">
-                  {error.msg}
-                </p>
+                <p className="alert-danger">{error.msg}</p>
               </div>
             ))}
 

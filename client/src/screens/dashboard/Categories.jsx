@@ -8,7 +8,7 @@ import { useGetQuery } from "../../store/services/categoryServices";
 import Wrapper from "./Wrapper";
 
 const Categories = () => {
-  const { page } = useParams();
+  let { page } = useParams();
 
   const { success } = useSelector((state) => state.globalReducer);
 

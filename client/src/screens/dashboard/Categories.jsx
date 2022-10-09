@@ -47,10 +47,10 @@ const Categories = () => {
                         name
                       </th>
                       <th className="p-3 uppercase text-sm font-medium text-gray-500">
-                        edit
+                        Edit
                       </th>
                       <th className="p-3 uppercase text-sm font-medium text-gray-500">
-                        delete
+                        Delete
                       </th>
                     </tr>
                   </thead>
@@ -61,10 +61,12 @@ const Categories = () => {
                           {category.name}
                         </td>
                         <td className="p-3 capitalize text-sm font-normal text-gray-400">
-                          edit
+                          <Link to={`/dashboard`}>Edit</Link>
                         </td>
                         <td className="p-3 capitalize text-sm font-normal text-gray-400">
-                          <button className="btn btn-danger">delete</button>
+                          <button className="btn btn-danger">
+                            <Link to={`/`}>Delete</Link>
+                          </button>
                         </td>
                       </tr>
                     ))}

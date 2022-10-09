@@ -11,6 +11,10 @@ import Wrapper from "./Wrapper";
 const Categories = () => {
   let { page } = useParams();
 
+  if (!page) {
+    page = 1;
+  }
+
   const { success } = useSelector((state) => state.globalReducer);
 
   const dispatch = useDispatch();

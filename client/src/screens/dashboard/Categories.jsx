@@ -15,7 +15,7 @@ const Categories = () => {
 
   const dispatch = useDispatch();
 
-  const { data = [], isLoading } = useGetQuery(page ? page : 1);
+  const { data = [], isLoading: isFetching } = useGetQuery(page ? page : 1);
 
   useEffect(() => {
     return () => {
@@ -32,7 +32,7 @@ const Categories = () => {
           </Link>
         </ScreenHeader>
         {success && <div className="alert-success">{success}</div>}
-        {!isLoading ? (
+        {!isFetching ? (
           data?.categories?.length > 0 && (
             <>
               <div>

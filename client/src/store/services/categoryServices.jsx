@@ -40,10 +40,24 @@ const createCategory = createApi({
         },
         providesTags: ["categories"],
       }),
+      updateCategory: builder.mutation({
+        query: (data) => {
+          return {
+            url: `update-category/${data.id}`,
+            method: "PUT",
+            body: { name: data.name },
+          };
+        },
+        invalidatesTags: ["categories"],
+      }),
     };
   },
 });
-export const { useCreateCatMutation, useGetQuery, useFetchCategoryQuery } =
-  createCategory;
+export const {
+  useCreateCatMutation,
+  useGetQuery,
+  useFetchCategoryQuery,
+  useUpdateCategoryMutation,
+} = createCategory;
 
 export default createCategory;

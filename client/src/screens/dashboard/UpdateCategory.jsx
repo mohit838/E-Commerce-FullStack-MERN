@@ -5,7 +5,11 @@ import ScreenHeader from "../../components/ScreenHeader";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setSuccess } from "../../store/reducers/globalReducer";
-import { useFetchCategoryQuery } from "../../store/services/categoryServices";
+import {
+  useFetchCategoryQuery,
+  useUpdateCategoryMutation,
+} from "../../store/services/categoryServices";
+import Spinner from "../../components/Spinner";
 
 const UpdateCategory = () => {
   const [state, setState] = useState("");
@@ -13,26 +17,33 @@ const UpdateCategory = () => {
   const { id } = useParams();
   const { data, isFetching } = useFetchCategoryQuery(id);
 
-  //   const errors = response?.error?.data?.errors
-  //     ? response?.error?.data?.errors
-  //     : [];
+  const [saveCat, response] = useUpdateCategoryMutation();
 
-  //   const handleCreateCategory = (e) => {
-  //     e.preventDefault();
+  const errors = response?.error?.data?.errors
+    ? response?.error?.data?.errors
+    : [];
 
-  //     saveCat({ name: state });
-  //   };
+  const handleCategoryUdpate = (e) => {
+    e.preventDefault();
+
+    saveCat({ name: state, id });
+  };
+
+  console.log(data);
+
+  useEffect(() => {
+    data?.category && setState(data?.category?.name);
+  }, [data?.category]);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  //   useEffect(() => {
-  //     if (response.isSuccess) {
-  //       dispatch(setSuccess(response?.data?.message));
-
-  //       navigate("/dashboard/categories");
-  //     }
-  //   }, [response.isSuccess]);
+  useEffect(() => {
+    if (response?.isSuccess) {
+      dispatch(setSuccess(response?.data?.message));
+      navigate("/dashboard/categories");
+    }
+  }, [response?.isSuccess]);
 
   return (
     <>
@@ -43,42 +54,32 @@ const UpdateCategory = () => {
           </Link>
         </ScreenHeader>
 
-        {/* Categories Form */}
-        <form className="w-full md:w-8/12">
-          <h3 className="text-lg capitalize mb-3">Update Category</h3>
-
-          {/* Show Errors */}
-          {/* {errors.length > 0 &&
-            errors.map((error, key) => (
-              <div key={key}>
-                <p className="alert-danger">{error.msg}</p>
-              </div>
-            ))} */}
-
-          {/* Form Inputs */}
-          <div className="mb-3">
-            <input
-              type="text"
-              name=""
-              className="form-control"
-              placeholder="Category Name..."
-              value={state}
-              onChange={(e) => {
-                setState(e.target.value);
-              }}
-            />
-          </div>
-
-          {/* Button */}
-          <div className="mb-3 mt-5">
-            <input
-              type="submit"
-              name=""
-              className="btn-submit"
-              value="update"
-            />
-          </div>
-        </form>
+        {!isFetching ? (
+          <form className="w-full md:w-8/12" onSubmit={handleCategoryUdpate}>
+            <h3 className="text-lg capitalize mb-3">Update category</h3>
+            {errors.length > 0 &&
+              errors.map((error, key) => (
+                <p className="alert-danger" key={key}>
+                  {error.msg}
+                </p>
+              ))}
+            <div className="mb-3">
+              <input
+                type="text"
+                name=""
+                className="form-control"
+                placeholder="Category Name..."
+                value={state}
+                onChange={(e) => setState(e.target.value)}
+              />
+            </div>
+            <div className="mb-3">
+              <input type="submit" value="Update" className="btn btn-indigo" />
+            </div>
+          </form>
+        ) : (
+          <Spinner />
+        )}
       </Wrapper>
     </>
   );

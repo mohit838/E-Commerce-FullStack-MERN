@@ -1,5 +1,5 @@
 .btn {
-  @apply py-2 px-5 text-black rounded uppercase;
+  @apply py-2 px-5 rounded uppercase;
 }
 
 .btn-dark {
@@ -7,9 +7,9 @@
 }
 
 .btn-submit {
-  @apply bg-black px-4 py-2 rounded-lg capitalize font-medium cursor-pointer;
+  @apply bg-black px-4 py-2 rounded-lg capitalize font-medium cursor-pointer !important;
 }
 
 .btn-warning {
-  @apply bg-orange-400 py-[6px];
+  @apply bg-orange-400 text-black py-[6px];
 }

@@ -1,13 +1,17 @@
 import React, { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Wrapper from "./Wrapper";
 import ScreenHeader from "../../components/ScreenHeader";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setSuccess } from "../../store/reducers/globalReducer";
+import { useFetchCategoryQuery } from "../../store/services/categoryServices";
 
 const UpdateCategory = () => {
   const [state, setState] = useState("");
+
+  const { id } = useParams();
+  const { data, isFetching } = useFetchCategoryQuery(id);
 
   //   const errors = response?.error?.data?.errors
   //     ? response?.error?.data?.errors

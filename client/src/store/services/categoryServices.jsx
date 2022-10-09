@@ -30,9 +30,20 @@ const createCategory = createApi({
         },
         providesTags: ["categories"],
       }),
+
+      fetchCategory: builder.query({
+        query: (id) => {
+          return {
+            url: `fetch-category/${id}`,
+            method: "GET",
+          };
+        },
+        providesTags: ["categories"],
+      }),
     };
   },
 });
-export const { useCreateCatMutation, useGetQuery } = createCategory;
+export const { useCreateCatMutation, useGetQuery, useFetchCategoryQuery } =
+  createCategory;
 
 export default createCategory;

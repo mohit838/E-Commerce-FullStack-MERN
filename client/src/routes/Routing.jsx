@@ -4,6 +4,7 @@ import AdminLogin from "../screens/auth/AdminLogin";
 import Categories from "../screens/dashboard/Categories";
 import CreateCategories from "../screens/dashboard/CreateCategories";
 import Products from "../screens/dashboard/Products";
+import UpdateCategory from "../screens/dashboard/UpdateCategory";
 import Private from "./Private";
 import Public from "./Public";
 
@@ -61,7 +62,7 @@ const Routing = () => {
             path="update-categories/:id"
             element={
               <Private>
-                <CreateCategories />
+                <UpdateCategory />
               </Private>
             }
           />

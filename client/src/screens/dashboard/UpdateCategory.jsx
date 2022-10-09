@@ -29,7 +29,7 @@ const UpdateCategory = () => {
     saveCat({ name: state, id });
   };
 
-  console.log(data);
+  //   console.log(data);
 
   useEffect(() => {
     data?.category && setState(data?.category?.name);
@@ -74,7 +74,7 @@ const UpdateCategory = () => {
               />
             </div>
             <div className="mb-3">
-              <input type="submit" value="Update" className="btn btn-indigo" />
+              <input type="submit" value="Update" className="btn btn-submit" />
             </div>
           </form>
         ) : (

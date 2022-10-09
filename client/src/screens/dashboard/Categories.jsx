@@ -63,6 +63,7 @@ const Categories = () => {
                         <td className="p-3 capitalize text-sm font-normal text-gray-400">
                           <Link
                             to={`/dashboard/update-categories/${category._id}`}
+                            className="btn btn-warning"
                           >
                             Edit
                           </Link>

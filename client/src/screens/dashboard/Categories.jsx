@@ -19,7 +19,7 @@ const Categories = () => {
 
   const dispatch = useDispatch();
 
-  const { data = [], isLoading: isFetching } = useGetQuery(page ? page : 1);
+  const { data = [], isLoading: isFetching } = useGetQuery(page);
 
   useEffect(() => {
     return () => {

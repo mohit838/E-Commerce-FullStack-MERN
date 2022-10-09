@@ -55,6 +55,16 @@ const Routing = () => {
               </Private>
             }
           />
+
+          {/* Update Categories */}
+          <Route
+            path="update-categories/:id"
+            element={
+              <Private>
+                <CreateCategories />
+              </Private>
+            }
+          />
         </Route>
       </Routes>
     </BrowserRouter>

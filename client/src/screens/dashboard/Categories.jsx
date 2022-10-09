@@ -61,7 +61,11 @@ const Categories = () => {
                           {category.name}
                         </td>
                         <td className="p-3 capitalize text-sm font-normal text-gray-400">
-                          <Link to={`/dashboard`}>Edit</Link>
+                          <Link
+                            to={`/dashboard/update-categories/${category._id}`}
+                          >
+                            Edit
+                          </Link>
                         </td>
                         <td className="p-3 capitalize text-sm font-normal text-gray-400">
                           <button className="btn btn-danger">

@@ -24,7 +24,7 @@ class Category {
     }
   }
 
-  async fetchCategories(req, res) {
+  async Categories(req, res) {
     const page = req.params.page;
     const perPage = 4;
     const skip = (page - 1) * perPage;
@@ -36,6 +36,16 @@ class Category {
         .sort({ updatedAt: -1 });
       // console.log(response);
       return res.status(200).json({ categories: response, perPage, count });
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
+  async fetchCategories(req, res) {
+    const { id } = req.params;
+    try {
+      const response = await CategoryModel.findOne({ _id: id });
+      return res.status(200).json({ category: response });
     } catch (error) {
       console.log(error.message);
     }

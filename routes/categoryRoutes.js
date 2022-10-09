@@ -10,8 +10,10 @@ router.post(
   Category.createCategory
 );
 
+router.get("/categories/:page", Authorization.authorized, Category.Categories);
+
 router.get(
-  "/categories/:page",
+  "/fetch-category/:id",
   Authorization.authorized,
   Category.fetchCategories
 );

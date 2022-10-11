@@ -1,5 +1,9 @@
 const formidable = require('formidable');
-
+const { v4: uuidv4 } = require("uuid");
+const { validationResult } = require("express-validator");
+const fs = require("fs");
+const path = require("path");
+const ProductModel = require("./../models/ProductModel");
 
 class Product {
     async create(req, res) {

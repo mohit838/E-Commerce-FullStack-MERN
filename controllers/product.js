@@ -11,10 +11,9 @@ class Product {
     form.parse(req, async (err, fields, files) => {
       if (!err) {
         const parsedData = JSON.parse(fields.data);
-        const errors = [];
-        if (parsedData.title.trim().length === 0) {
-          errors.push({ msg: "Title is required" });
-        }
+
+        parsedData.title.trim().length === 0;
+
         if (parseInt(parsedData.price) < 1) {
           errors.push({ msg: "Price should be above $1" });
         }

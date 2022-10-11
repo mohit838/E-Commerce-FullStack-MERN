@@ -1,5 +1,5 @@
 .label {
-  @apply block mb-2 text-base capitalize text-gray-400;
+  @apply block mb-2 text-base capitalize text-white;
 }
 .form-control {
   @apply bg-gray-900 p-3 rounded-sm outline-none w-full focus:ring-[3px] ring-gray-700 transition-all duration-500 placeholder:text-gray-500 placeholder:capitalize;

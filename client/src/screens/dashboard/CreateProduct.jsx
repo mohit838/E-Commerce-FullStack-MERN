@@ -6,6 +6,7 @@ import { useAllCategoriesQuery } from "../../store/services/categoryServices";
 import Spinner from "../../components/Spinner";
 import { TwitterPicker } from "react-color";
 import { v4 as uuidv4 } from "uuid";
+import Colors from "../../components/Colors";
 
 const CreateProduct = () => {
   const { data = [], isFetching } = useAllCategoriesQuery();
@@ -28,6 +29,11 @@ const CreateProduct = () => {
       ...state,
       colors: [...filtered, { color: color.hex, id: uuidv4() }],
     });
+  };
+
+  const deleteColor = (color) => {
+    const filtered = state.colors.filter((clr) => clr.color !== color.color);
+    setState({ ...state, colors: filtered });
   };
 
   return (
@@ -129,6 +135,10 @@ const CreateProduct = () => {
                 </div>
               </div>
             </form>
+
+            <div className="w-full xl:w-4/12 p-3">
+              <Colors colors={state.colors} deleteColor={deleteColor} />
+            </div>
           </div>
         </ScreenHeader>
       </Wrapper>

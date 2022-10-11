@@ -1,7 +1,7 @@
 const formidable = require("formidable");
 const { v4: uuidv4 } = require("uuid");
-// const fs = require("fs");
-// const path = require("path");
+const fs = require("fs");
+const path = require("path");
 // const ProductModel = require("./../models/ProductModel");
 
 class Product {
@@ -57,11 +57,11 @@ class Product {
                 const imageName = uuidv4() + `.${extension}`;
                 const __dirname = path.resolve();
                 const newPath =
-                  __dirname + `/../client/public/images/${imageName}`;
-                images[`image${i + 1}`] = imageName;
+                  __dirname + `/client/public/images/${imageName}`;
+
                 fs.copyFile(files[`image${i + 1}`].filepath, newPath, (err) => {
-                  if (err) {
-                    console.log(err);
+                  if (!err) {
+                    console.log("Uploaded!");
                   }
                 });
               } else {

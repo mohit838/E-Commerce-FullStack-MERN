@@ -5,7 +5,11 @@ const ImagesPreview = ({ url, heading }) => {
         <div>
           <h1 className="right-heading">{heading}</h1>
           <div className="preivew-image">
-            <img src={url} alt="image" className="w-full h-full object-cover" />
+            <img
+              src={url}
+              alt="imageForPreview"
+              className="w-full h-full object-cover"
+            />
           </div>
         </div>
       )}

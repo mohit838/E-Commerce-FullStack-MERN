@@ -1,5 +1,6 @@
 const formidable = require("formidable");
 const { v4: uuidv4 } = require("uuid");
+const { validationResult } = require("express-validator");
 const fs = require("fs");
 const path = require("path");
 const ProductModel = require("./../models/ProductModel");
@@ -112,7 +113,104 @@ class Product {
     });
   }
 
-  // Update products
-}
+  // Get All Products
 
+  async get(req, res) {
+    const { page } = req.params;
+    const perPage = 5;
+    const skip = (page - 1) * perPage;
+    try {
+      const count = await ProductModel.find({}).countDocuments();
+      const response = await ProductModel.find({})
+        .skip(skip)
+        .limit(perPage)
+        .sort({ updatedAt: -1 });
+      return res.status(200).json({ products: response, perPage, count });
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
+  // Get Product
+
+  async getProduct(req, res) {
+    const { id } = req.params;
+    try {
+      const product = await ProductModel.findOne({ _id: id });
+      return res.status(200).json(product);
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+      console.log(error.message);
+    }
+  }
+
+  // Update Products
+
+  async updateProduct(req, res) {
+    const errors = validationResult(req);
+    if (errors.isEmpty()) {
+      try {
+        const {
+          _id,
+          title,
+          price,
+          discount,
+          stock,
+          colors,
+          sizes,
+          description,
+          category,
+        } = req.body;
+        const response = await ProductModel.updateOne(
+          { _id },
+          {
+            $set: {
+              title,
+              price,
+              discount,
+              stock,
+              category,
+              colors,
+              sizes,
+              description,
+            },
+          }
+        );
+        return res.status(200).json({ msg: "Product has updated", response });
+      } catch (error) {
+        console.log(error);
+        return res.status(500).json({ errors: error });
+      }
+    } else {
+      return res.status(400).json({ errors: errors.array() });
+    }
+  }
+
+  // Delete Products
+
+  async deleteProduct(req, res) {
+    const { id } = req.params;
+    try {
+      const product = await ProductModel.findOne({ _id: id });
+      [1, 2, 3].forEach((number) => {
+        let key = `image${number}`;
+        console.log(key);
+        let image = product[key];
+        let __dirname = path.resolve();
+        let imagePath = __dirname + `/client/public/images/${image}`;
+        fs.unlink(imagePath, (err) => {
+          if (err) {
+            throw new Error(err);
+          }
+        });
+      });
+      await ProductModel.findByIdAndDelete(id);
+      return res
+        .status(200)
+        .json({ msg: "Product has been deleted successfully" });
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
+}
 module.exports = new Product();

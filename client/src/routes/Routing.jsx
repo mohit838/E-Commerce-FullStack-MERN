@@ -4,6 +4,7 @@ import AdminLogin from "../screens/auth/AdminLogin";
 import Categories from "../screens/dashboard/Categories";
 import CreateCategories from "../screens/dashboard/CreateCategories";
 import CreateProduct from "../screens/dashboard/CreateProduct";
+import EditProducts from "../screens/dashboard/EditProducts";
 import Products from "../screens/dashboard/Products";
 import UpdateCategory from "../screens/dashboard/UpdateCategory";
 import Private from "./Private";
@@ -33,6 +34,24 @@ const Routing = () => {
               </Private>
             }
           />
+
+          <Route
+            path="products/:page"
+            element={
+              <Private>
+                <Products />
+              </Private>
+            }
+          />
+          <Route
+            path="edit-product/:id"
+            element={
+              <Private>
+                <EditProducts />
+              </Private>
+            }
+          />
+
           <Route
             path="categories"
             element={

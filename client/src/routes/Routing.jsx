@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AdminLogin from "../screens/auth/AdminLogin";
 import Categories from "../screens/dashboard/Categories";
 import CreateCategories from "../screens/dashboard/CreateCategories";
+import CreateProduct from "../screens/dashboard/CreateProduct";
 import Products from "../screens/dashboard/Products";
 import UpdateCategory from "../screens/dashboard/UpdateCategory";
 import Private from "./Private";
@@ -63,6 +64,15 @@ const Routing = () => {
             element={
               <Private>
                 <UpdateCategory />
+              </Private>
+            }
+          />
+
+          <Route
+            path="create-product"
+            element={
+              <Private>
+                <CreateProduct />
               </Private>
             }
           />

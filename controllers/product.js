@@ -17,11 +17,16 @@ class Product {
         req.body.discount = parsedData.discount;
         req.body.stock = parsedData.stock;
         req.body.category = parsedData.category;
-        req.body.description = parsedData.description;
+        req.body.description = fields.description;
 
-        const errors = validationResult(res);
+        const errors = validationResult(req);
 
-        console.log(req.body);
+        if (!errors) {
+          console.log("No Error!");
+        } else {
+          console.log(errors.array());
+          return res.status(400).json({ errors: errors.array() });
+        }
       }
     });
   }

@@ -7,7 +7,7 @@ module.exports = [
     .isEmpty()
     .trim()
     .escape()
-    .withMessage("title is required"),
+    .withMessage("Title is required"),
 
   body("price")
     .custom((value) => {

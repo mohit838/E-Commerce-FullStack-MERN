@@ -11,7 +11,7 @@ import SizesList from "../../components/SizeList";
 import ImagesPreview from "../../components/ImagePreview";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { useCProductMutation } from "../../store/services/productServices";
+import { useCreateProductMutation } from "../../store/services/productServices";
 import { useDispatch } from "react-redux";
 import { setSuccess } from "../../store/reducers/globalReducer";
 import toast, { Toaster } from "react-hot-toast";
@@ -86,7 +86,7 @@ const CreateProduct = () => {
     setSizeList(filtered);
   };
 
-  const [createNewProduct, response] = useCProductMutation();
+  const [createNewProduct, response] = useCreateProductMutation();
 
   console.log("Client Response: ", response);
 

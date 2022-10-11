@@ -5,6 +5,7 @@ import ScreenHeader from "../../components/ScreenHeader";
 import { useAllCategoriesQuery } from "../../store/services/categoryServices";
 import Spinner from "../../components/Spinner";
 import { TwitterPicker } from "react-color";
+import { v4 as uuidv4 } from "uuid";
 
 const CreateProduct = () => {
   const { data = [], isFetching } = useAllCategoriesQuery();

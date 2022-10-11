@@ -8,6 +8,9 @@ import { TwitterPicker } from "react-color";
 import { v4 as uuidv4 } from "uuid";
 import Colors from "../../components/Colors";
 import SizesList from "../../components/SizeList";
+import ImagesPreview from "../../components/ImagePreview";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 const CreateProduct = () => {
   const { data = [], isFetching } = useAllCategoriesQuery();
@@ -33,6 +36,22 @@ const CreateProduct = () => {
     { name: "5 years" },
   ]);
   const [sizeList, setSizeList] = useState([]);
+
+  const [preview, setPreview] = useState({
+    image1: "",
+    image2: "",
+    image3: "",
+  });
+  const imageHandle = (e) => {
+    if (e.target.files.length !== 0) {
+      setState({ ...state, [e.target.name]: e.target.files[0] });
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreview({ ...preview, [e.target.name]: reader.result });
+      };
+      reader.readAsDataURL(e.target.files[0]);
+    }
+  };
 
   const handleInput = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
@@ -176,12 +195,74 @@ const CreateProduct = () => {
                     </div>
                   )}
                 </div>
+
+                <div className="w-full p-3">
+                  <label htmlFor="image1" className="label">
+                    Image 1
+                  </label>
+                  <input
+                    type="file"
+                    name="image1"
+                    id="image1"
+                    className="input-file"
+                    onChange={imageHandle}
+                  />
+                </div>
+
+                <div className="w-full p-3">
+                  <label htmlFor="image2" className="label">
+                    Image 2
+                  </label>
+                  <input
+                    type="file"
+                    name="image2"
+                    id="image2"
+                    className="input-file"
+                    onChange={imageHandle}
+                  />
+                </div>
+
+                <div className="w-full p-3">
+                  <label htmlFor="image3" className="label">
+                    Image 3
+                  </label>
+                  <input
+                    type="file"
+                    name="image3"
+                    id="image3"
+                    className="input-file"
+                    onChange={imageHandle}
+                  />
+                </div>
+                <div className="w-full p-3">
+                  <label htmlFor="description" className="label">
+                    Description
+                  </label>
+                  <ReactQuill
+                    theme="snow"
+                    id="description"
+                    value=""
+                    onChange=""
+                    placeholder="Description..."
+                  />
+                </div>
+                <div className="w-full p-3">
+                  <input
+                    type="submit"
+                    value=""
+                    disabled=""
+                    className="btn btn-indigo"
+                  />
+                </div>
               </div>
             </form>
 
             <div className="w-full xl:w-4/12 p-3">
               <Colors colors={state.colors} deleteColor={deleteColor} />
               <SizesList list={sizeList} deleteSize={deleteSize} />
+              <ImagesPreview url={preview.image1} heading="image 1" />
+              <ImagesPreview url={preview.image2} heading="image 2" />
+              <ImagesPreview url={preview.image3} heading="image 3" />
             </div>
           </div>
         </ScreenHeader>

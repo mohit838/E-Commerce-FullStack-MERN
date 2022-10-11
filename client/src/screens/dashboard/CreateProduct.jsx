@@ -89,7 +89,7 @@ const CreateProduct = () => {
   const [createNewProduct, response] = useCreateProductMutation();
 
   // Must be commenting after test
-  console.log("Client Response: ", response);
+  // console.log("Client Response: ", response);
 
   const createPro = (e) => {
     e.preventDefault();

@@ -3,6 +3,7 @@ const cors = require("cors");
 const env = require("./config/envConfig");
 const dbConnect = require("./config/db");
 const userRouters = require("./routes/userRoutes");
+const productRouters = require("./routes/productRoutes");
 const productCatRouters = require("./routes/categoryRoutes");
 
 // Add middlewire
@@ -16,6 +17,7 @@ dbConnect();
 // User Router
 app.use("/api", userRouters);
 app.use("/api", productCatRouters);
+app.use("/api", productRouters);
 
 // Test route
 app.get("/", (req, res) => {

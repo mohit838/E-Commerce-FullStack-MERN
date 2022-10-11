@@ -26,7 +26,7 @@ const Categories = () => {
 
   const [removeCategory, response] = useDeleteCategoryMutation();
 
-  const deleteCat = (id) => {
+  const handleDeleteCategory = (id) => {
     if (window.confirm("Are you really want to delete the category?")) {
       removeCategory(id);
     }
@@ -90,7 +90,7 @@ const Categories = () => {
                         <td className="p-3 capitalize text-sm font-normal text-gray-400">
                           <button
                             className="btn btn-danger"
-                            onClick={() => deleteCat(category._id)}
+                            onClick={() => handleDeleteCategory(category._id)}
                           >
                             Delete
                           </button>

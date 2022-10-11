@@ -1,5 +1,5 @@
 const formidable = require("formidable");
-// const { v4: uuidv4 } = require("uuid");
+const { v4: uuidv4 } = require("uuid");
 // const fs = require("fs");
 // const path = require("path");
 // const ProductModel = require("./../models/ProductModel");
@@ -54,8 +54,24 @@ class Product {
                 extension === "jpg" ||
                 extension === "png"
               ) {
+                const imageName = uuidv4() + `.${extension}`;
+                const __dirname = path.resolve();
+                const newPath =
+                  __dirname + `/../client/public/images/${imageName}`;
+                images[`image${i + 1}`] = imageName;
+                fs.copyFile(files[`image${i + 1}`].filepath, newPath, (err) => {
+                  if (err) {
+                    console.log(err);
+                  }
+                });
               } else {
+                const error = {};
+                error["msg"] = `Image${i + 1} has invalid ${extension} type`;
+                errors.push(error);
               }
+            }
+            if (errors.length !== 0) {
+              return res.status(400).json({ errors });
             }
           } else {
             return res.status(400).json({ errors });

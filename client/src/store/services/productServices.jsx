@@ -14,7 +14,7 @@ const productService = createApi({
   }),
   endpoints: (builder) => {
     return {
-      cProduct: builder.mutation({
+      createProduct: builder.mutation({
         query: (data) => {
           return {
             url: "/create-product",
@@ -27,5 +27,5 @@ const productService = createApi({
     };
   },
 });
-export const { useCProductMutation } = productService;
+export const { useCreateProductMutation } = productService;
 export default productService;

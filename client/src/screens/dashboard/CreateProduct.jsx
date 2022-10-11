@@ -88,6 +88,8 @@ const CreateProduct = () => {
 
   const [createNewProduct, response] = useCProductMutation();
 
+  console.log("Client Response: ", response);
+
   const createPro = (e) => {
     e.preventDefault();
 

@@ -24,6 +24,28 @@ const createCategory = createApi({
         },
         invalidatesTags: ["categories"],
       }),
+
+      updateCategory: builder.mutation({
+        query: (data) => {
+          return {
+            url: `update-category/${data.id}`,
+            method: "PUT",
+            body: { name: data.name },
+          };
+        },
+        invalidatesTags: ["categories"],
+      }),
+
+      deleteCategory: builder.mutation({
+        query: (id) => {
+          return {
+            url: `delete-category/${id}`,
+            method: "DELETE",
+          };
+        },
+        invalidatesTags: ["categories"],
+      }),
+
       get: builder.query({
         query: (page) => {
           return { url: `categories/${page}`, method: "GET" };
@@ -39,25 +61,6 @@ const createCategory = createApi({
           };
         },
         providesTags: ["categories"],
-      }),
-      updateCategory: builder.mutation({
-        query: (data) => {
-          return {
-            url: `update-category/${data.id}`,
-            method: "PUT",
-            body: { name: data.name },
-          };
-        },
-        invalidatesTags: ["categories"],
-      }),
-      deleteCategory: builder.mutation({
-        query: (id) => {
-          return {
-            url: `delete-category/${id}`,
-            method: "DELETE",
-          };
-        },
-        invalidatesTags: ["categories"],
       }),
 
       allCategories: builder.query({

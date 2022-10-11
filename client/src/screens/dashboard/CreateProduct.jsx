@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 // import toast, { Toaster } from "react-hot-toast";
 import Wrapper from "./Wrapper";
@@ -8,6 +8,14 @@ import Spinner from "../../components/Spinner";
 
 const CreateProduct = () => {
   const { data = [], isFetching } = useAllCategoriesQuery();
+  const [state, setState] = useState({
+    title: "",
+    price: 0,
+    discount: 0,
+    stock: 0,
+    category: "",
+    colors: [],
+  });
 
   return (
     <div>

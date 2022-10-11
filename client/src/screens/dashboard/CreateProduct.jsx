@@ -88,6 +88,7 @@ const CreateProduct = () => {
 
   const [createNewProduct, response] = useCreateProductMutation();
 
+  // Must be commenting after test
   console.log("Client Response: ", response);
 
   const createPro = (e) => {
@@ -104,8 +105,6 @@ const CreateProduct = () => {
     formData.append("image3", state.image3);
     createNewProduct(formData);
   };
-
-  console.log(response);
 
   useEffect(() => {
     if (!response.isSuccess) {

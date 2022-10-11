@@ -10,11 +10,9 @@ import { setSuccess } from "../../store/reducers/globalReducer";
 const CreateCategories = () => {
   const [state, setState] = useState("");
 
-  const [saveCat, response] = useCreateCatMutation();
+  const [saveCat, data] = useCreateCatMutation();
 
-  const errors = response?.error?.data?.errors
-    ? response?.error?.data?.errors
-    : [];
+  const errors = data?.error?.data?.errors ? data?.error?.data?.errors : [];
 
   const handleCreateCategory = (e) => {
     e.preventDefault();
@@ -26,12 +24,11 @@ const CreateCategories = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (response.isSuccess) {
-      dispatch(setSuccess(response?.data?.message));
-
+    if (data?.isSuccess) {
+      dispatch(setSuccess(data?.data?.message));
       navigate("/dashboard/categories");
     }
-  }, [response.isSuccess]);
+  }, [data?.isSuccess]);
 
   return (
     <>
@@ -74,7 +71,7 @@ const CreateCategories = () => {
               type="submit"
               name=""
               className="btn-submit"
-              value={response.isLoading ? "Loading..." : "Create Category"}
+              value={data.isLoading ? "Loading..." : "Create Category"}
             />
           </div>
         </form>

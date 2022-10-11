@@ -29,8 +29,6 @@ const UpdateCategory = () => {
     saveCat({ name: state, id });
   };
 
-  //   console.log(data);
-
   useEffect(() => {
     data?.category && setState(data?.category?.name);
   }, [data?.category]);

@@ -40,9 +40,11 @@ const Categories = () => {
 
   useEffect(() => {
     return () => {
-      dispatch(clearMessage());
+      setTimeout(() => {
+        dispatch(clearMessage());
+      }, 10000);
     };
-  }, []);
+  }, [success]);
 
   return (
     <>

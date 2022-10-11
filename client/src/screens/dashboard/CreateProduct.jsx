@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 // import toast, { Toaster } from "react-hot-toast";
 import Wrapper from "./Wrapper";
 import ScreenHeader from "../../components/ScreenHeader";
-import Spinner from "../../components/Spinner";
+// import Spinner from "../../components/Spinner";
 
 const CreateProduct = () => {
   return (
@@ -27,6 +27,49 @@ const CreateProduct = () => {
                     className="form-control"
                     id="title"
                     placeholder="title..."
+                  />
+                </div>
+
+                <div className="w-full md:w-6/12 p-3">
+                  <label htmlFor="price" className="label">
+                    price
+                  </label>
+                  <input
+                    type="number"
+                    name="price"
+                    className="form-control"
+                    id="price"
+                    placeholder="price..."
+                    onChange=""
+                    value=""
+                  />
+                </div>
+                <div className="w-full md:w-6/12 p-3">
+                  <label htmlFor="discount" className="label">
+                    discount
+                  </label>
+                  <input
+                    type="number"
+                    name="discount"
+                    className="form-control"
+                    id="discount"
+                    placeholder="discount..."
+                    onChange=""
+                    value=""
+                  />
+                </div>
+                <div className="w-full md:w-6/12 p-3">
+                  <label htmlFor="stock" className="label">
+                    stock
+                  </label>
+                  <input
+                    type="number"
+                    name="stock"
+                    className="form-control"
+                    id="stock"
+                    placeholder="stock..."
+                    onChange=""
+                    value=""
                   />
                 </div>
               </div>

@@ -6,9 +6,9 @@ const productService = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:5000/api/",
     prepareHeaders: (headers, { getState }) => {
-      const reducers = getState();
-      const token = reducers?.authReducer?.adminToken;
-      headers.set("authorization", token ? `Bearer ${token}` : "");
+      const clientToken = getState();
+      const cToken = clientToken?.authReducer?.adminToken;
+      headers.set("authorization", cToken ? `Bearer ${cToken}` : "");
       return headers;
     },
   }),

@@ -98,11 +98,11 @@ const CreateProduct = () => {
     createNewProduct(formData);
   };
 
+  console.log(response);
+
   useEffect(() => {
     if (!response.isSuccess) {
-      response?.error?.data?.errors.map((err) => {
-        toast.error(err.msg);
-      });
+      response?.error?.data?.errors.map((err) => toast.error(err.msg));
     }
   }, [response?.error?.data?.errors]);
 

@@ -14,8 +14,11 @@ const CreateProduct = () => {
     discount: 0,
     stock: 0,
     category: "",
-    colors: [],
   });
+
+  const handleInput = (e) => {
+    setState({ ...state, [e.target.name]: e.target.value });
+  };
 
   return (
     <div>
@@ -51,8 +54,8 @@ const CreateProduct = () => {
                     className="form-control"
                     id="price"
                     placeholder="price..."
-                    onChange=""
-                    value=""
+                    onChange={handleInput}
+                    value={state.price}
                   />
                 </div>
                 <div className="w-full md:w-6/12 p-3">
@@ -65,8 +68,8 @@ const CreateProduct = () => {
                     className="form-control"
                     id="discount"
                     placeholder="discount..."
-                    onChange=""
-                    value=""
+                    onChange={handleInput}
+                    value={state.discount}
                   />
                 </div>
                 <div className="w-full md:w-6/12 p-3">
@@ -79,8 +82,8 @@ const CreateProduct = () => {
                     className="form-control"
                     id="stock"
                     placeholder="stock..."
-                    onChange=""
-                    value=""
+                    onChange={handleInput}
+                    value={state.stock}
                   />
                 </div>
 
@@ -94,8 +97,8 @@ const CreateProduct = () => {
                         name="category"
                         id="categories"
                         className="form-control"
-                        onChange=""
-                        value=""
+                        onChange={handleInput}
+                        value={state.category}
                       >
                         <option value="">Choose category</option>
                         {data?.categories?.map((category) => (

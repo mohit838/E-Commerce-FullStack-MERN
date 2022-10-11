@@ -30,4 +30,6 @@ router.delete(
   Category.deleteCategory
 );
 
+router.get("/allcategories", Category.allCategories);
+
 module.exports = router;

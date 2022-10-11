@@ -3,9 +3,12 @@ import { Link } from "react-router-dom";
 // import toast, { Toaster } from "react-hot-toast";
 import Wrapper from "./Wrapper";
 import ScreenHeader from "../../components/ScreenHeader";
-// import Spinner from "../../components/Spinner";
+import { useAllCategoriesQuery } from "../../store/services/categoryServices";
+import Spinner from "../../components/Spinner";
 
 const CreateProduct = () => {
+  const { data = [], isFetching } = useAllCategoriesQuery();
+
   return (
     <div>
       <Wrapper>
@@ -71,6 +74,32 @@ const CreateProduct = () => {
                     onChange=""
                     value=""
                   />
+                </div>
+
+                <div className="w-full md:w-6/12 p-3">
+                  <label htmlFor="categories" className="label">
+                    categories
+                  </label>
+                  {!isFetching ? (
+                    data?.categories?.length > 0 && (
+                      <select
+                        name="category"
+                        id="categories"
+                        className="form-control"
+                        onChange=""
+                        value=""
+                      >
+                        <option value="">Choose category</option>
+                        {data?.categories?.map((category) => (
+                          <option value={category.name} key={category._id}>
+                            {category.name}
+                          </option>
+                        ))}
+                      </select>
+                    )
+                  ) : (
+                    <Spinner />
+                  )}
                 </div>
               </div>
             </form>

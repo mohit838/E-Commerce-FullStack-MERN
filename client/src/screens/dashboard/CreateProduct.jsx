@@ -18,7 +18,9 @@ import toast, { Toaster } from "react-hot-toast";
 
 const CreateProduct = () => {
   const { data = [], isFetching } = useAllCategoriesQuery();
-  const [value, setValue] = useState("");
+
+  const [textValue, setTextValue] = useState("");
+
   const [state, setState] = useState({
     title: "",
     price: 0,
@@ -88,10 +90,13 @@ const CreateProduct = () => {
 
   const createPro = (e) => {
     e.preventDefault();
+
+    setState({ ...state, description: textValue, sizes: sizeList });
+
     const formData = new FormData();
     formData.append("data", JSON.stringify(state));
     formData.append("sizes", JSON.stringify(sizeList));
-    formData.append("description", value);
+    formData.append("description", textValue);
     formData.append("image1", state.image1);
     formData.append("image2", state.image2);
     formData.append("image3", state.image3);
@@ -282,8 +287,8 @@ const CreateProduct = () => {
                 <ReactQuill
                   theme="snow"
                   id="description"
-                  value={value}
-                  onChange={setValue}
+                  value={textValue}
+                  onChange={setTextValue}
                   placeholder="Description..."
                 />
               </div>

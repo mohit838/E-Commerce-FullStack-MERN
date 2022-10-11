@@ -138,6 +138,8 @@ const CreateProduct = () => {
                   className="form-control"
                   id="title"
                   placeholder="title..."
+                  onChange={handleInput}
+                  value={state.title}
                 />
               </div>
 

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Wrapper from "./Wrapper";
 import ScreenHeader from "../../components/ScreenHeader";
 import { useAllCategoriesQuery } from "../../store/services/categoryServices";
@@ -11,9 +11,13 @@ import SizesList from "../../components/SizeList";
 import ImagesPreview from "../../components/ImagePreview";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import { useCProductMutation } from "../../store/services/productServices";
+import { useDispatch } from "react-redux";
+import { setSuccess } from "../../store/reducers/globalReducer";
 
 const CreateProduct = () => {
   const { data = [], isFetching } = useAllCategoriesQuery();
+  const [value, setValue] = useState("");
   const [state, setState] = useState({
     title: "",
     price: 0,
@@ -79,6 +83,36 @@ const CreateProduct = () => {
     setSizeList(filtered);
   };
 
+  const [createNewProduct, response] = useCProductMutation();
+
+  const createPro = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("data", JSON.stringify(state));
+    formData.append("sizes", JSON.stringify(sizeList));
+    formData.append("description", value);
+    formData.append("image1", state.image1);
+    formData.append("image2", state.image2);
+    formData.append("image3", state.image3);
+    createNewProduct(formData);
+  };
+
+  // useEffect(() => {
+  //   if (!response.isSuccess) {
+  //     response?.error?.data?.errors.map((err) => {
+  //       toast.error(err.msg);
+  //     });
+  //   }
+  // }, [response?.error?.data?.errors]);
+  // const dispatch = useDispatch();
+  // const navigate = useNavigate();
+  // useEffect(() => {
+  //   if (response?.isSuccess) {
+  //     dispatch(setSuccess(response?.data?.msg));
+  //     navigate("/dashboard/products");
+  //   }
+  // }, [response?.isSuccess]);
+
   return (
     <div>
       <Wrapper>
@@ -87,7 +121,7 @@ const CreateProduct = () => {
             <i className="bi bi-arrow-left-short"></i> proudcts list
           </Link>
           <div className="flex flex-wrap -mx-3">
-            <form className="w-full xl:w-8/12 p-3">
+            <form className="w-full xl:w-8/12 p-3" onSubmit={createPro}>
               <div className="flex flex-wrap">
                 <div className="w-full md:w-6/12 p-3">
                   <label htmlFor="title" className="label">
@@ -241,17 +275,17 @@ const CreateProduct = () => {
                   <ReactQuill
                     theme="snow"
                     id="description"
-                    value=""
-                    onChange=""
+                    value={value}
+                    onChange={setValue}
                     placeholder="Description..."
                   />
                 </div>
                 <div className="w-full p-3">
                   <input
                     type="submit"
-                    value=""
-                    disabled=""
-                    className="btn btn-indigo"
+                    value={response.isLoading ? "loading..." : "save product"}
+                    disabled={response.isLoading ? true : false}
+                    className="btn btn-submit"
                   />
                 </div>
               </div>

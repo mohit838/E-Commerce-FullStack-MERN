@@ -31,11 +31,11 @@
 }
 
 .ql-toolbar.ql-snow {
-  @apply border-none bg-gray-900 !important;
+  @apply border-none bg-white !important;
 }
 
 .ql-container.ql-snow {
-  @apply border-none bg-gray-700 !important;
+  @apply border-none bg-black !important;
 }
 
 .my-container {

@@ -101,7 +101,7 @@ class Product {
             } else {
               return res.status(400).json({ errors });
             }
-            // Img Upload Finished and send data DB
+            // Img Upload Finished and send data to DB
           } else {
             return res.status(400).json({ errors });
           }
@@ -111,6 +111,8 @@ class Product {
       }
     });
   }
+
+  // Update products
 }
 
 module.exports = new Product();

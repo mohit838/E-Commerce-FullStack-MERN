@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import parse from "html-react-parser";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Colors from "../../components/Colors";
@@ -113,7 +114,7 @@ const EditProducts = () => {
     if (!fetching) {
       setState(product);
       setSizeList(product.sizes);
-      setValue(product.description);
+      setValue(parse(product.description));
     }
   }, [product]);
 

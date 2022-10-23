@@ -1,6 +1,7 @@
 import React from "react";
 import Nav from "./../../../components/home/Nav";
 import Header from "./../../../components/home/Header";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 const Register = () => {
@@ -11,7 +12,11 @@ const Register = () => {
         <Header>Register</Header>
 
         <div className="flex flex-wrap justify-center ">
-          <div className="w-full sm:w-8/12 md:w-6/12 lg:w-4/12 p-6">
+          <motion.div
+            initial={{ opacity: 0, x: "-100vw" }}
+            animate={{ opacity: 1, x: 0 }}
+            className="w-full sm:w-8/12 md:w-6/12 lg:w-4/12 p-6"
+          >
             <form className="bg-white rounded-lg -mt-20 border border-gray-200 p-10 shadow-md">
               {/* <h1 className="heading mb-5">Register</h1> */}
               <div className="mb-4">
@@ -43,7 +48,7 @@ const Register = () => {
                 </p>
               </div>
             </form>
-          </div>
+          </motion.div>
         </div>
       </div>
     </>

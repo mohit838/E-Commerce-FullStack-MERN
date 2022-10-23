@@ -10,6 +10,9 @@
 .form-label {
   @apply block mb-1.5 text-sm font-medium capitalize text-white;
 }
+.form-label-two {
+  @apply block mb-1.5 text-sm font-medium capitalize text-black;
+}
 .form-input {
-  @apply w-full border px-3 py-3 border-gray-300 rounded-md outline-none;
+  @apply w-full border px-3 py-3 border-gray-500 rounded-md outline-none;
 }

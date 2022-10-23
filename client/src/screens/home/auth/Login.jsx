@@ -23,7 +23,7 @@ const Login = () => {
                   name="email"
                   id="email"
                   placeholder="Email..."
-                  value="email"
+                  className="form-input"
                 />
               </div>
               <div className="mb-4">
@@ -35,7 +35,7 @@ const Login = () => {
                   name="password"
                   id="password"
                   placeholder="Password..."
-                  value="password"
+                  className="form-input"
                 />
               </div>
               <div className="mb-4">

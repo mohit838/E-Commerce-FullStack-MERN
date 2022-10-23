@@ -1,5 +1,5 @@
 import React from "react";
-import Nav from "./../../components/home/Nav";
+import Nav from "../../components/home/Nav";
 
 const Home = () => {
   return (

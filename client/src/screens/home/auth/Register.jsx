@@ -12,7 +12,7 @@ const Register = () => {
 
         <div className="flex flex-wrap justify-center ">
           <div className="w-full sm:w-8/12 md:w-6/12 lg:w-4/12 p-6">
-            <form className="bg-white rounded-lg -mt-20 border border-gray-200 p-5 shadow-md">
+            <form className="bg-white rounded-lg -mt-20 border border-gray-200 p-10 shadow-md">
               {/* <h1 className="heading mb-5">Register</h1> */}
               <div className="mb-4">
                 <label htmlFor="email" className="form-label-two">

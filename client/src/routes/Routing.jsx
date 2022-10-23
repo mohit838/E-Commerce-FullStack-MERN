@@ -10,12 +10,14 @@ import UpdateCategory from "../screens/dashboard/UpdateCategory";
 import Home from "../screens/home/Home";
 import Private from "./Private";
 import Public from "./Public";
+import Login from "./../screens/home/auth/Login";
 
 const Routing = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="login" element={<Login />} />
 
         <Route path="auth">
           <Route

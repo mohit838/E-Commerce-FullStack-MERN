@@ -15,7 +15,7 @@ const Login = () => {
           <motion.div
             initial={{ opacity: 0, x: "-100vw" }}
             animate={{ opacity: 1, x: 0 }}
-            className="w-full sm:w-8/12 md:w-6/12 lg:w-4/12 p-6"
+            className="w-full sm:w-10/12 md:w-8/12 lg:w-6/12 xl:w-4/12 p-6"
           >
             <form className="bg-white rounded-lg -mt-20 border border-gray-200 p-10 shadow-md">
               {/* <h1 className="heading mb-5">Sign In</h1> */}

@@ -1,2 +1,2 @@
-# gRio-MERN
+# gRio-E-Commerce-MERN
  FullStack

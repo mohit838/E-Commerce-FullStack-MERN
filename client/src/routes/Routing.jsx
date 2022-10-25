@@ -21,6 +21,7 @@ const Routing = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="cat-product/:name/:page" element={<Home />} />
 
         <Route element={<UserAuthRoute />}>
           <Route path="login" element={<Login />} />

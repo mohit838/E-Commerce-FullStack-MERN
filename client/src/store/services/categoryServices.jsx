@@ -28,7 +28,7 @@ const createCategory = createApi({
       updateCategory: builder.mutation({
         query: (data) => {
           return {
-            url: `update-category/${data.id}`,
+            url: `/update-category/${data.id}`,
             method: "PUT",
             body: { name: data.name },
           };
@@ -39,7 +39,7 @@ const createCategory = createApi({
       deleteCategory: builder.mutation({
         query: (id) => {
           return {
-            url: `delete-category/${id}`,
+            url: `/delete-category/${id}`,
             method: "DELETE",
           };
         },
@@ -48,7 +48,7 @@ const createCategory = createApi({
 
       get: builder.query({
         query: (page) => {
-          return { url: `categories/${page}`, method: "GET" };
+          return { url: `/categories/${page}`, method: "GET" };
         },
         providesTags: ["categories"],
       }),
@@ -56,7 +56,7 @@ const createCategory = createApi({
       fetchCategory: builder.query({
         query: (id) => {
           return {
-            url: `fetch-category/${id}`,
+            url: `/fetch-category/${id}`,
             method: "GET",
           };
         },
@@ -66,7 +66,7 @@ const createCategory = createApi({
       allCategories: builder.query({
         query: () => {
           return {
-            url: "allcategories",
+            url: "/allcategories",
             method: "GET",
           };
         },

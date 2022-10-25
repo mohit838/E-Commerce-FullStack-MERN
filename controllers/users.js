@@ -12,6 +12,8 @@ const {
 module.exports.register = async (req, res) => {
   const errors = validationResult(req);
 
+  console.log(errors);
+
   if (errors.isEmpty()) {
     const { name, email, password } = req.body;
 

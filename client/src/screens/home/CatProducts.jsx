@@ -4,7 +4,7 @@ import Header from "./../../components/home/Header";
 import { useParams } from "react-router-dom";
 
 const CatProducts = () => {
-  const { name } = useParams();
+  const { name, page = 1 } = useParams();
 
   return (
     <>

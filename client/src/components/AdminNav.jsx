@@ -6,7 +6,7 @@ const AdminNav = ({ openSideBar }) => {
   const dispatch = useDispatch();
 
   const adminLogout = () => {
-    dispatch(logout());
+    dispatch(logout("admin-token"));
   };
 
   return (

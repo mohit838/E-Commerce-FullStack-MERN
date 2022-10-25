@@ -39,11 +39,10 @@ const Register = () => {
   useEffect(() => {
     if (response.isSuccess) {
       localStorage.setItem("user-token", response?.data?.token);
+      dispatch(setUserToken(response?.data?.token));
+      dispatch(setSuccess(response?.data?.msg));
+      navigate("/user");
     }
-
-    dispatch(setUserToken(response?.data?.token));
-    dispatch(setSuccess(response?.data?.msg));
-    navigate("/user");
   }, [response.isSuccess]);
 
   const showErrors = (name) => {
@@ -119,7 +118,7 @@ const Register = () => {
                   Password
                 </label>
                 <input
-                  type="text"
+                  type="password"
                   name="password"
                   id="password"
                   placeholder="password..."

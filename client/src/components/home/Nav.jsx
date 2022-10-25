@@ -21,11 +21,11 @@ const Nav = () => {
                 <FiSearch size={22} />
               </li>
 
-              <li className="nav-li">
+              {/* <li className="nav-li">
                 <Link to="/user" className="nav-link">
                   User
                 </Link>
-              </li>
+              </li> */}
 
               <li className="nav-li">
                 <Link to="/login" className="nav-link">

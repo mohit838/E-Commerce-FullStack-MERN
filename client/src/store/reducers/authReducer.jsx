@@ -1,19 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 import jwtDecode from "jwt-decode";
 
-// Get Admin Token From Local Storage
-const adminTokenStorage = localStorage.getItem("admin-token");
-
 // TOKEN expire verifying
-function tokenVerify() {
-  if (adminTokenStorage) {
-    const tokenDecode = jwtDecode(adminTokenStorage);
+function tokenVerify(tokenName) {
+  const tokenStorage = localStorage.getItem(tokenName);
+
+  if (tokenStorage) {
+    const tokenDecode = jwtDecode(tokenStorage);
     const expireIn = new Date(tokenDecode.exp * 1000);
     if (new Date() > expireIn) {
-      localStorage.removeItem("admin-token");
+      localStorage.removeItem(tokenName);
       return null;
     } else {
-      return adminTokenStorage;
+      return tokenStorage;
     }
   } else {
     return null;
@@ -23,8 +22,8 @@ function tokenVerify() {
 const authReducer = createSlice({
   name: "authReducer",
   initialState: {
-    adminToken: tokenVerify(),
-    userToken: "",
+    adminToken: tokenVerify("admin-token"),
+    userToken: tokenVerify("user-token"),
   },
   reducers: {
     setAdminToken: (state, action) => {

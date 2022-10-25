@@ -31,5 +31,6 @@ router.delete(
 );
 
 router.get("/allcategories", Category.allCategories);
+router.get("/random-categories", Category.randomCategories);
 
 module.exports = router;

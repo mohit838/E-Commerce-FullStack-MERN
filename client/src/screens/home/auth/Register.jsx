@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Nav from "./../../../components/home/Nav";
 import Header from "./../../../components/home/Header";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useUserRegisterMutation } from "../../../store/services/authService";
 import { useForm } from "../../../hooks/Form";
 import { setUserToken } from "./../../../store/reducers/authReducer";
@@ -34,6 +34,7 @@ const Register = () => {
   }, [response?.error?.data, response.isError]);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (response.isSuccess) {
@@ -42,6 +43,7 @@ const Register = () => {
 
     dispatch(setUserToken(response?.data?.token));
     dispatch(setSuccess(response?.data?.msg));
+    navigate("/user");
   }, [response.isSuccess]);
 
   const showErrors = (name) => {

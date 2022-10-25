@@ -5,6 +5,9 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useUserRegisterMutation } from "../../../store/services/authService";
 import { useForm } from "../../../hooks/Form";
+import { setUserToken } from "./../../../store/reducers/authReducer";
+import { setSuccess } from "./../../../store/reducers/globalReducer";
+import { useDispatch } from "react-redux";
 
 const Register = () => {
   const [errors, setErrors] = useState([]);
@@ -17,6 +20,8 @@ const Register = () => {
 
   const [registerUser, response] = useUserRegisterMutation();
 
+  console.log(response);
+
   const handleRegOnSubmit = (e) => {
     e.preventDefault();
     registerUser(state);
@@ -27,6 +32,17 @@ const Register = () => {
       setErrors(response?.error?.data?.errors);
     }
   }, [response?.error?.data, response.isError]);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (response.isSuccess) {
+      localStorage.setItem("user-token", response?.data?.token);
+    }
+
+    dispatch(setUserToken(response?.data?.token));
+    dispatch(setSuccess(response?.data?.msg));
+  }, [response.isSuccess]);
 
   const showErrors = (name) => {
     const exist = errors.find((err) => err.param === name);

@@ -12,6 +12,7 @@ import Private from "./Private";
 import Public from "./Public";
 import Login from "./../screens/home/auth/Login";
 import Register from "../screens/home/auth/Register";
+import Dashboard from "../screens/users/Dashboard";
 
 const Routing = () => {
   return (
@@ -20,6 +21,7 @@ const Routing = () => {
         <Route path="/" element={<Home />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
+        <Route path="user" element={<Dashboard />} />
 
         <Route path="auth">
           <Route

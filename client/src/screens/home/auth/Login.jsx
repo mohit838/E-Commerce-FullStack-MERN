@@ -1,10 +1,59 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Nav from "./../../../components/home/Nav";
 import Header from "./../../../components/home/Header";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useForm } from "./../../../hooks/Form";
+import { useUserLoginMutation } from "../../../store/services/authService";
+import { useDispatch } from "react-redux";
+import { setUserToken } from "../../../store/reducers/authReducer";
+import { setSuccess } from "../../../store/reducers/globalReducer";
 
 const Login = () => {
+  const [errors, setErrors] = useState([]);
+
+  const { state, handleRegOnChange } = useForm({
+    email: "",
+    password: "",
+  });
+
+  const [userLogin, response] = useUserLoginMutation();
+
+  console.log(response);
+
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+    userLogin(state);
+  };
+
+  useEffect(() => {
+    if (response.isError) {
+      setErrors(response?.error?.data?.errors);
+    }
+  }, [response?.error?.data, response.isError]);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (response.isSuccess) {
+      localStorage.setItem("user-token", response?.data?.token);
+      dispatch(setUserToken(response?.data?.token));
+      dispatch(setSuccess(response?.data?.msg));
+      navigate("/user");
+    }
+  }, [response.isSuccess]);
+
+  const showErrors = (name) => {
+    const exist = errors.find((err) => err.param === name);
+
+    if (exist) {
+      return exist.msg;
+    } else {
+      return false;
+    }
+  };
+
   return (
     <>
       <Nav />
@@ -17,7 +66,10 @@ const Login = () => {
             animate={{ opacity: 1, x: 0 }}
             className="w-full sm:w-10/12 md:w-8/12 lg:w-6/12 xl:w-4/12 p-6"
           >
-            <form className="bg-white rounded-lg -mt-20 border border-gray-200 p-10 shadow-md">
+            <form
+              onSubmit={handleOnSubmit}
+              className="bg-white rounded-lg -mt-20 border border-gray-200 p-10 shadow-md"
+            >
               {/* <h1 className="heading mb-5">Sign In</h1> */}
               <div className="mb-4">
                 <label htmlFor="email" className="form-label-two">
@@ -28,8 +80,17 @@ const Login = () => {
                   name="email"
                   id="email"
                   placeholder="Email..."
-                  className="form-input"
+                  className={`form-input ${
+                    showErrors(errors, "name")
+                      ? "border-rose-600 bg-rose-50"
+                      : "border-gray-300 bg-white"
+                  }`}
+                  value={state.email}
+                  onChange={handleRegOnChange}
                 />
+                {showErrors("email") && (
+                  <span className="error">{showErrors("email")}</span>
+                )}
               </div>
               <div className="mb-4">
                 <label htmlFor="password" className="form-label-two">
@@ -40,14 +101,24 @@ const Login = () => {
                   name="password"
                   id="password"
                   placeholder="Password..."
-                  className="form-input"
+                  className={`form-input ${
+                    showErrors(errors, "name")
+                      ? "border-rose-600 bg-rose-50"
+                      : "border-gray-300 bg-white"
+                  }`}
+                  value={state.password}
+                  onChange={handleRegOnChange}
                 />
+                {showErrors("password") && (
+                  <span className="error">{showErrors("password")}</span>
+                )}
               </div>
               <div className="mb-4">
                 <input
                   type="submit"
-                  value="Sign In"
+                  value={`${response.isLoading ? "Loading..." : "Sign In"}`}
                   className="btn btn-submit text-white w-full"
+                  disabled={response.isLoading ? true : false}
                 />
               </div>
               <div>

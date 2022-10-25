@@ -37,11 +37,9 @@ module.exports.register = async (req, res) => {
           .status(201)
           .json({ msg: "You account has been created.", token });
       } else {
-        return res
-          .status(401)
-          .json({
-            errors: [{ msg: `${email} is already taken!`, param: "email" }],
-          });
+        return res.status(401).json({
+          errors: [{ msg: `${email} is already taken!`, param: "email" }],
+        });
       }
     } catch (error) {
       return res.status(500).json("Server Inernal error!");
@@ -74,14 +72,14 @@ module.exports.login = async (req, res) => {
             return res.status(201).json({ token, isAdmin: false });
           }
         } else {
-          return res
-            .status(401)
-            .json({ errors: [{ msg: "Password not matched!" }] });
+          return res.status(401).json({
+            errors: [{ msg: "Password not matched!", param: "password" }],
+          });
         }
       } else {
-        return res
-          .status(401)
-          .json({ errors: [{ msg: `${email} is not found!` }] });
+        return res.status(401).json({
+          errors: [{ msg: `${email} is not found!`, param: "email" }],
+        });
       }
     } catch (error) {
       console.log(error.message);

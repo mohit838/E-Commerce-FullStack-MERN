@@ -20,8 +20,6 @@ const Register = () => {
 
   const [registerUser, response] = useUserRegisterMutation();
 
-  console.log(response);
-
   const handleRegOnSubmit = (e) => {
     e.preventDefault();
     registerUser(state);

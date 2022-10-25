@@ -1,6 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import jwtDecode from "jwt-decode";
 
+// Customer Token
+const customersToken = localStorage.getItem("user-token");
+
 // TOKEN expire verifying
 function tokenVerify(tokenName) {
   const tokenStorage = localStorage.getItem(tokenName);
@@ -24,6 +27,7 @@ const authReducer = createSlice({
   initialState: {
     adminToken: tokenVerify("admin-token"),
     userToken: tokenVerify("user-token"),
+    user: customersToken ? jwtDecode(customersToken) : null,
   },
   reducers: {
     setAdminToken: (state, action) => {
@@ -32,6 +36,7 @@ const authReducer = createSlice({
 
     setUserToken: (state, action) => {
       state.userToken = action.payload;
+      state.user = jwtDecode(action.payload);
     },
 
     logout: (state) => {

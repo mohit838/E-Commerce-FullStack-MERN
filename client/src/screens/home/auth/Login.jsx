@@ -20,8 +20,6 @@ const Login = () => {
 
   const [userLogin, response] = useUserLoginMutation();
 
-  console.log(response);
-
   const handleOnSubmit = (e) => {
     e.preventDefault();
     userLogin(state);

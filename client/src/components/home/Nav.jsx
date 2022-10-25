@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { FiSearch } from "react-icons/fi";
 import { BsHandbag } from "react-icons/bs";
 import { useSelector } from "react-redux";
+import Logo from "./../../assets/logo/logo.svg";
 
 const Nav = () => {
   const { userToken, user } = useSelector((state) => state.authReducer);
@@ -13,11 +14,7 @@ const Nav = () => {
         <div className="my-container">
           <div className="flex justify-between items-center">
             <Link to="/">
-              <img
-                src="./logo.svg"
-                className="h-full object-cover"
-                alt="logo"
-              />
+              <img src={Logo} className="h-full object-cover" alt="logo" />
             </Link>
             <ul className="flex items-center">
               <li className="nav-li cursor-pointer">

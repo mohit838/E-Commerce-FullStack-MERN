@@ -8,6 +8,7 @@ import { useForm } from "../../../hooks/Form";
 import { setUserToken } from "./../../../store/reducers/authReducer";
 import { setSuccess } from "./../../../store/reducers/globalReducer";
 import { useDispatch } from "react-redux";
+import { showError } from "../../../utils/ShowErrors";
 
 const Register = () => {
   const [errors, setErrors] = useState([]);
@@ -43,16 +44,6 @@ const Register = () => {
     }
   }, [response.isSuccess]);
 
-  const showErrors = (name) => {
-    const exist = errors.find((err) => err.param === name);
-
-    if (exist) {
-      return exist.msg;
-    } else {
-      return false;
-    }
-  };
-
   return (
     <>
       <Nav />
@@ -80,7 +71,7 @@ const Register = () => {
                   id="name"
                   placeholder="Name..."
                   className={`form-input ${
-                    showErrors(errors, "name")
+                    showError(errors, "name")
                       ? "border-rose-600 bg-rose-50"
                       : "border-gray-300 bg-white"
                   }`}
@@ -88,8 +79,8 @@ const Register = () => {
                   onChange={handleRegOnChange}
                 />
 
-                {showErrors("name") && (
-                  <span className="error">{showErrors("name")}</span>
+                {showError(errors, "name") && (
+                  <span className="error">{showError(errors, "name")}</span>
                 )}
               </div>
 
@@ -106,8 +97,8 @@ const Register = () => {
                   value={state.email}
                   onChange={handleRegOnChange}
                 />
-                {showErrors("email") && (
-                  <span className="error">{showErrors("email")}</span>
+                {showError(errors, "email") && (
+                  <span className="error">{showError(errors, "email")}</span>
                 )}
               </div>
 
@@ -124,8 +115,8 @@ const Register = () => {
                   value={state.password}
                   onChange={handleRegOnChange}
                 />
-                {showErrors("password") && (
-                  <span className="error">{showErrors("password")}</span>
+                {showError("password") && (
+                  <span className="error">{showError(errors, "password")}</span>
                 )}
               </div>
 

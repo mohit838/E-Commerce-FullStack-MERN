@@ -77,9 +77,8 @@ const Login = () => {
                   value={state.email}
                   onChange={handleRegOnChange}
                 />
-                {showError(errors, "email") && (
-                  <span className="error">{showError(errors, "email")}</span>
-                )}
+
+                <span className="error">{showError(errors, "email")}</span>
               </div>
               <div className="mb-4">
                 <label htmlFor="password" className="form-label-two">
@@ -98,9 +97,8 @@ const Login = () => {
                   value={state.password}
                   onChange={handleRegOnChange}
                 />
-                {showError(errors, "password") && (
-                  <span className="error">{showError(errors, "password")}</span>
-                )}
+
+                <span className="error">{showError(errors, "password")}</span>
               </div>
               <div className="mb-4">
                 <input

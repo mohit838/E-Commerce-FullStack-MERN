@@ -79,9 +79,7 @@ const Register = () => {
                   onChange={handleRegOnChange}
                 />
 
-                {showError(errors, "name") && (
-                  <span className="error">{showError(errors, "name")}</span>
-                )}
+                <span className="error">{showError(errors, "name")}</span>
               </div>
 
               <div className="mb-4">
@@ -97,9 +95,8 @@ const Register = () => {
                   value={state.email}
                   onChange={handleRegOnChange}
                 />
-                {showError(errors, "email") && (
-                  <span className="error">{showError(errors, "email")}</span>
-                )}
+
+                <span className="error">{showError(errors, "email")}</span>
               </div>
 
               <div className="mb-4">
@@ -115,9 +112,8 @@ const Register = () => {
                   value={state.password}
                   onChange={handleRegOnChange}
                 />
-                {showError("password") && (
-                  <span className="error">{showError(errors, "password")}</span>
-                )}
+
+                <span className="error">{showError(errors, "password")}</span>
               </div>
 
               <div className="mb-4">

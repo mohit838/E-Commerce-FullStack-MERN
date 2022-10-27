@@ -16,6 +16,7 @@ import Dashboard from "../screens/users/Dashboard";
 import UserRoute from "./userRoutes";
 import UserAuthRoute from "./UserAuthRoute";
 import CatProducts from "../screens/home/CatProducts";
+import Product from "../screens/home/Product";
 
 const Routing = () => {
   return (
@@ -24,6 +25,7 @@ const Routing = () => {
         <Route path="/" element={<Home />} />
         <Route path="cat-products/:name" element={<CatProducts />} />
         <Route path="cat-products/:name/:page" element={<CatProducts />} />
+        <Route path="product/:id" element={<Product />} />
 
         <Route element={<UserAuthRoute />}>
           <Route path="login" element={<Login />} />
@@ -51,6 +53,15 @@ const Routing = () => {
             element={
               <Private>
                 <Products />
+              </Private>
+            }
+          />
+
+          <Route
+            path="create-product"
+            element={
+              <Private>
+                <CreateProduct />
               </Private>
             }
           />
@@ -103,15 +114,6 @@ const Routing = () => {
             element={
               <Private>
                 <UpdateCategory />
-              </Private>
-            }
-          />
-
-          <Route
-            path="create-product"
-            element={
-              <Private>
-                <CreateProduct />
               </Private>
             }
           />

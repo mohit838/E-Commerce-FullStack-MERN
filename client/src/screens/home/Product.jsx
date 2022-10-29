@@ -8,6 +8,8 @@ const Product = () => {
   const { name } = useParams();
   const { data, isFetching } = useGetProductsQuery(name);
 
+  console.log(data);
+
   return (
     <>
       <Nav />
@@ -22,9 +24,7 @@ const Product = () => {
               </li>
               <FiChevronRight className="block mx-2" />
               <li className="capitalize text-gray-600">
-                <Link to={`/cat-products/${data.category}`}>
-                  {data.category}
-                </Link>
+                <Link to={`/cat-products/${data.cat}`}>{data.cat}</Link>
               </li>
               <FiChevronRight className="block mx-2" />
               <li className="capitalize text-gray-600">

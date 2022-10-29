@@ -25,7 +25,7 @@ const Routing = () => {
         <Route path="/" element={<Home />} />
         <Route path="cat-products/:name" element={<CatProducts />} />
         <Route path="cat-products/:name/:page" element={<CatProducts />} />
-        <Route path="product/:id" element={<Product />} />
+        <Route path="product/:pid" element={<Product />} />
 
         <Route element={<UserAuthRoute />}>
           <Route path="login" element={<Login />} />

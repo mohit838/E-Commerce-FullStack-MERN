@@ -134,9 +134,10 @@ class Product {
   // Get Product
 
   async getProduct(req, res) {
-    const { id } = req.params;
+    const { pid } = req.params;
+
     try {
-      const product = await ProductModel.findOne({ _id: id });
+      const product = await ProductModel.findOne({ _id: pid });
       return res.status(200).json(product);
     } catch (error) {
       return res.status(500).json({ error: error.message });

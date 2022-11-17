@@ -57,9 +57,9 @@ const productService = createApi({
       }),
 
       getProduct: builder.query({
-        query: (pid) => {
+        query: (id) => {
           return {
-            url: `/product/${pid}`,
+            url: `/product/${id}`,
             method: "GET",
           };
         },

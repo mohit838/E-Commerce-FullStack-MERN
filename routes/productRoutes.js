@@ -9,9 +9,10 @@ const HomeProducts = require("../controllers/HomeProducts");
 router.post("/create-product", [Authorization.authorized], Product.create);
 
 // Paginations
-router.get("/products/:page", Product.get);
+router.get("/products/:page", Product.allGet);
 
-router.get("/product/:pid", Product.getProduct);
+// Get Single Product
+router.get("/product/:id", Product.getSingleProduct);
 
 // Update
 router.put(

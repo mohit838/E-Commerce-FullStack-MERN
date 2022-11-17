@@ -5,10 +5,12 @@ import ProductLoader from "../../components/home/ProductLoader";
 import { useGetProductsQuery } from "../../store/services/productServices";
 
 const Product = () => {
-  const { name } = useParams();
-  const { data, isFetching } = useGetProductsQuery(name);
+  const { id } = useParams();
+  const { data, isFetching } = useGetProductsQuery(id);
 
+  console.log(id);
   console.log(data);
+  console.log(isFetching);
 
   return (
     <>
@@ -24,7 +26,9 @@ const Product = () => {
               </li>
               <FiChevronRight className="block mx-2" />
               <li className="capitalize text-gray-600">
-                <Link to={`/cat-products/${data.cat}`}>{data.cat}</Link>
+                <Link to={`/cat-products/${data.category}`}>
+                  {data.category}
+                </Link>
               </li>
               <FiChevronRight className="block mx-2" />
               <li className="capitalize text-gray-600">

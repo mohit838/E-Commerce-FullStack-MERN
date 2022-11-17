@@ -115,7 +115,7 @@ class Product {
 
   // Get All Products
 
-  async get(req, res) {
+  async allGet(req, res) {
     const { page } = req.params;
     const perPage = 5;
     const skip = (page - 1) * perPage;
@@ -133,11 +133,11 @@ class Product {
 
   // Get Product
 
-  async getProduct(req, res) {
-    const { pid } = req.params;
+  async getSingleProduct(req, res) {
+    const { id } = req.params;
 
     try {
-      const product = await ProductModel.findOne({ _id: pid });
+      const product = await ProductModel.findById({ _id: id });
       return res.status(200).json(product);
     } catch (error) {
       return res.status(500).json({ error: error.message });

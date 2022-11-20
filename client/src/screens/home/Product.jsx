@@ -2,15 +2,15 @@ import { Link, useParams } from "react-router-dom";
 import { FiChevronRight } from "react-icons/fi";
 import Nav from "../../components/home/Nav";
 import ProductLoader from "../../components/home/ProductLoader";
-import { useGetProductsQuery } from "../../store/services/productServices";
+import { useGetProductQuery } from "../../store/services/productServices";
 
 const Product = () => {
   const { id } = useParams();
-  const { data, isFetching } = useGetProductsQuery(id);
+  const { data, isFetching } = useGetProductQuery(id);
 
   console.log(id);
-  console.log(data);
-  console.log(isFetching);
+  console.log("Data", data);
+  console.log("Fetch", isFetching);
 
   return (
     <>

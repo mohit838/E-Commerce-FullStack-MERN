@@ -8,9 +8,9 @@ const Product = () => {
   const { id } = useParams();
   const { data, isFetching } = useGetProductQuery(id);
 
-  console.log(id);
-  console.log("Data", data);
-  console.log("Fetch", isFetching);
+  // console.log(id);
+  // console.log("Data", data);
+  // console.log("Fetch", isFetching);
 
   return (
     <>

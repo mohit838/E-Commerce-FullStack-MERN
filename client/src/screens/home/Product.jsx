@@ -3,6 +3,7 @@ import { FiChevronRight } from "react-icons/fi";
 import Nav from "../../components/home/Nav";
 import ProductLoader from "../../components/home/ProductLoader";
 import { useGetProductQuery } from "../../store/services/productServices";
+import DetailsCard from "../../components/home/DetailsCard";
 
 const Product = () => {
   const { id } = useParams();
@@ -35,6 +36,8 @@ const Product = () => {
                 <Link to={`/product/${data._id}`}>{data.title}</Link>
               </li>
             </ul>
+
+            <DetailsCard product={data} />
           </>
         )}
       </div>
